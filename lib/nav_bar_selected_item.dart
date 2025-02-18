@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islaami/app_theme.dart';
 
 class NavBarSelectedItem extends StatelessWidget {
-  NavBarSelectedItem({required this.imageName});
+  NavBarSelectedItem({super.key, required this.imageName});
   String imageName;
 
   @override

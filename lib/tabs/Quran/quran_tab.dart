@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islaami/app_theme.dart';
+import 'package:islaami/tabs/Quran/most_recently_section.dart';
 import 'package:islaami/tabs/Quran/sura.dart';
+import 'package:islaami/tabs/Quran/sura_details_screen.dart';
 import 'package:islaami/tabs/Quran/sura_item.dart';
 import 'package:islaami/tabs/Quran/sura_services.dart';
 
 class QuranTab extends StatefulWidget {
+  const QuranTab({super.key});
+
   @override
   State<QuranTab> createState() => _QuranTabState();
 }
@@ -45,6 +49,7 @@ class _QuranTabState extends State<QuranTab> {
             },
           ),
         ),
+        MostRecentlySection(),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: Text(
@@ -62,8 +67,20 @@ class _QuranTabState extends State<QuranTab> {
                 )
               : ListView.separated(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  itemBuilder: (_, index) =>
-                      SuraItem(SuraServices.searchResult[index]),
+                  itemBuilder: (_, index) {
+                    Sura sura = SuraServices.searchResult[index];
+                    return InkWell(
+                      onTap: () async {
+                        SuraServices.addSuraTomostRecently(sura);
+                        await Navigator.of(context).pushNamed(
+                          SuraDetailsScreen.routname,
+                          arguments: sura,
+                        );
+                        setState(() {});
+                      },
+                      child: SuraItem(sura),
+                    );
+                  },
                   separatorBuilder: (_, __) => Divider(
                     thickness: 1,
                     color: AppTheme.white,

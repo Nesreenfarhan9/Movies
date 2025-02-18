@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:islaami/app_theme.dart';
 import 'package:islaami/home.dart';
 import 'package:islaami/tabs/Quran/sura_details_screen.dart';
+import 'package:islaami/tabs/Quran/sura_services.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SuraServices.getRecentlyIndex();
   runApp(islami_app());
 }
 

@@ -7,6 +7,8 @@ import 'package:islaami/widgets/loading_indecator.dart';
 class SuraDetailsScreen extends StatefulWidget {
   static const String routname = '/suradetails';
 
+  const SuraDetailsScreen({super.key});
+
   @override
   State<SuraDetailsScreen> createState() => _SuraDetailsScreenState();
 }
