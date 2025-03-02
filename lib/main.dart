@@ -3,6 +3,7 @@ import 'package:islaami/app_theme.dart';
 import 'package:islaami/home.dart';
 import 'package:islaami/tabs/Quran/sura_details_screen.dart';
 import 'package:islaami/tabs/Quran/sura_services.dart';
+import 'package:islaami/tabs/hadeth/hadeth_details_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,7 @@ class islami_app extends StatelessWidget {
       routes: {
         homeScreen.routeName: (_) => homeScreen(),
         SuraDetailsScreen.routname: (_) => SuraDetailsScreen(),
+        HadethDetailsScreen.routename: (_) => HadethDetailsScreen(),
       },
       initialRoute: homeScreen.routeName,
       theme: AppTheme.light_theme,
