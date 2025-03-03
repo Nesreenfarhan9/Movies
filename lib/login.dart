@@ -7,6 +7,7 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   Color Yellow = const Color(0xFFFFBB3B);
+    static const routeNamed = "/login";
 
 
   @override
