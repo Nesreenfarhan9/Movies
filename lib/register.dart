@@ -111,9 +111,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/flags/us.png', width: 30),
+                Image.asset('assets/flags/US.png', width: 30),
                 const SizedBox(width: 10),
-                Image.asset('assets/flags/eg.png', width: 30),
+                Image.asset('assets/flags/EGYPT.png', width: 30),
               ],
             ),
           ],
