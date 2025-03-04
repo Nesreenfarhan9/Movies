@@ -15,15 +15,21 @@ class Update extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/images/avatar1.png'),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => update()));
+              },
+              child: CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage('assets/images/avatar1.png'),
+              ),
             ),
             const SizedBox(height: 20),
             TextField(
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                hintText: 'John Belfort',
+                hintText: 'John Safwat',
                 hintStyle: TextStyle(color: Colors.white54),
                 prefixIcon: Icon(Icons.person, color: Colors.white54),
                 filled: true,
@@ -60,28 +66,70 @@ class Update extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                itemCount: 9,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {},
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white10,
-                      backgroundImage:
-                          AssetImage('assets/images/avatar${index + 1}.png'),
-                    ),
-                  );
-                },
+            Spacer(),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                minimumSize: Size(double.infinity, 50),
               ),
+              onPressed: () {},
+              child: const Text('Delete Account',
+                  style: TextStyle(color: Colors.white)),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.yellow,
+                minimumSize: Size(double.infinity, 50),
+              ),
+              onPressed: () {},
+              child: const Text('Update Data',
+                  style: TextStyle(color: Colors.black)),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class update extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title:
+            const Text('Select Avatar', style: TextStyle(color: Colors.yellow)),
+      ),
+      body: GridView.builder(
+        padding: const EdgeInsets.all(16.0),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          childAspectRatio: 1,
+        ),
+        itemCount: 9,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.yellow, width: 2),
+              ),
+              child: CircleAvatar(
+                backgroundColor: Colors.white10,
+                backgroundImage:
+                    AssetImage('assets/images/avatar${index + 1}.png'),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
