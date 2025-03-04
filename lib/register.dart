@@ -7,6 +7,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   int selectedAvatarIndex = 0;
+  bool isPasswordVisible = false;
+  bool isConfirmPasswordVisible = false;
   final List<String> avatars = [
     'assets/images/avatar1.png',
     'assets/images/avatar2.png',
@@ -16,7 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     'assets/images/avatar6.png',
   ];
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
@@ -84,9 +86,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
             const SizedBox(height: 10),
             _buildTextField(Icons.email, 'Email'),
             const SizedBox(height: 10),
-            _buildTextField(Icons.lock, 'Password', obscureText: true),
+            _buildPasswordField('Password', isPasswordVisible, () {
+              setState(() {
+                isPasswordVisible = !isPasswordVisible;
+              });
+            }),
             const SizedBox(height: 10),
-            _buildTextField(Icons.lock, 'Confirm Password', obscureText: true),
+            _buildPasswordField('Confirm Password', isConfirmPasswordVisible,
+                () {
+              setState(() {
+                isConfirmPasswordVisible = !isConfirmPasswordVisible;
+              });
+            }),
             const SizedBox(height: 10),
             _buildTextField(Icons.phone, 'Phone Number'),
             const SizedBox(height: 20),
@@ -111,9 +122,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/flags/US.png', width: 30),
+                Image.asset('assets/flags/us.png', width: 30),
                 const SizedBox(width: 10),
-                Image.asset('assets/flags/EGYPT.png', width: 30),
+                Image.asset('assets/flags/eg.png', width: 30),
               ],
             ),
           ],
@@ -131,6 +142,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.white54),
         prefixIcon: Icon(icon, color: Colors.white54),
+        filled: true,
+        fillColor: Colors.white10,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPasswordField(
+      String hint, bool isVisible, VoidCallback toggleVisibility) {
+    return TextField(
+      style: const TextStyle(color: Colors.white),
+      obscureText: !isVisible,
+      decoration: InputDecoration(
+        hintText: hint,
+        hintStyle: const TextStyle(color: Colors.white54),
+        prefixIcon: const Icon(Icons.lock, color: Colors.white54),
+        suffixIcon: IconButton(
+          icon: Icon(
+            isVisible ? Icons.visibility : Icons.visibility_off,
+            color: Colors.white54,
+          ),
+          onPressed: toggleVisibility,
+        ),
         filled: true,
         fillColor: Colors.white10,
         border: OutlineInputBorder(
