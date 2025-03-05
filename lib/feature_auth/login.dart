@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:movies/register.dart';
 import '../shared/Textfieldwidget.dart';
+import 'package:movies/tab/home_screen.dart';
+import 'package:movies/shared/app_theme.dart';
+
+
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  Color Yellow = const Color(0xFFFFBB3B);
+
     static const routeNamed = "/login";
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF121312),
+      backgroundColor: AppTheme.black,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -48,10 +53,12 @@ class LoginScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, 'forget/');
+                  },
                   child: const Text(
                     "Forget Password?",
-                    style: TextStyle(color: Color(0xFFFFBB3B)),
+                    style: TextStyle(color: AppTheme.yellow),
                   ),
                 ),
               ),
@@ -63,14 +70,18 @@ class LoginScreen extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                    );
 
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Yellow,
+                    backgroundColor: AppTheme.yellow,
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   ),
-                  child: const Text("Login", style: TextStyle(color: Colors.black, fontSize: 18)),
+                  child: const Text("Login", style: TextStyle(color: AppTheme.black, fontSize: 18)),
                 ),
               ),
 
@@ -80,10 +91,17 @@ class LoginScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't Have an Account?", style: TextStyle(color: Colors.white)),
+                  const Text("Don't Have an Account?", style: TextStyle(color: AppTheme.primary)),
                   TextButton(
-                    onPressed: () {}, // Navigate to sign-up screen
-                    child: const Text("Create One", style: TextStyle(color: Color(0xFFFFBB3B))),
+                    onPressed: () {
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => RegisterScreen()),
+                        );
+
+                    },
+                    child: const Text("Create One", style: TextStyle(color: AppTheme.yellow)),
                   ),
                 ],
               ),
@@ -93,12 +111,12 @@ class LoginScreen extends StatelessWidget {
               // OR Divider
               Row(
                 children: const [
-                  Expanded(child: Divider(color: Color(0xFFFFBB3B))),
+                  Expanded(child: Divider(color:  AppTheme.yellow)),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text("OR", style: TextStyle(color: Color(0xFFFFBB3B))),
+                    child: Text("OR", style: TextStyle(color:  AppTheme.yellow)),
                   ),
-                  Expanded(child: Divider(color: Color(0xFFFFBB3B))),
+                  Expanded(child: Divider(color:  AppTheme.yellow)),
                 ],
               ),
 
@@ -109,10 +127,10 @@ class LoginScreen extends StatelessWidget {
                 child: ElevatedButton.icon(
                   onPressed: () {
                   },
-                  icon: const Icon(Icons.g_mobiledata_outlined, color: Colors.black, size: 35,),
-                  label: const Text("Login With Google", style: TextStyle(color: Colors.black)),
+                  icon: const Icon(Icons.g_mobiledata_outlined, color:  AppTheme.black, size: 35,),
+                  label: const Text("Login With Google", style: TextStyle(color:  AppTheme.black)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Yellow,
+                    backgroundColor:  AppTheme.yellow,
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   ),
@@ -126,7 +144,7 @@ class LoginScreen extends StatelessWidget {
                 width: 115,
                 height: 40,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xFFFFBB3B), width: 2),
+                  border: Border.all(color: AppTheme.yellow, width: 2),
                   borderRadius: BorderRadius.circular(25),
                   color: Colors.transparent,
                 ),
