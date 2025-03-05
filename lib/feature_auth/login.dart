@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../shared/Textfieldwidget.dart';
-import 'package:movies/register.dart';
-import 'forget_password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -50,10 +48,7 @@ class LoginScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, ForgetPasswordScreen.routeNamed);
-
-                  },
+                  onPressed: () {},
                   child: const Text(
                     "Forget Password?",
                     style: TextStyle(color: Color(0xFFFFBB3B)),
@@ -87,9 +82,7 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   const Text("Don't Have an Account?", style: TextStyle(color: Colors.white)),
                   TextButton(
-                    onPressed: () {
-                      MaterialPageRoute(builder: (context) => RegisterScreen()); // Direct navigation
-                    }, // Navigate to sign-up screen
+                    onPressed: () {}, // Navigate to sign-up screen
                     child: const Text("Create One", style: TextStyle(color: Color(0xFFFFBB3B))),
                   ),
                 ],

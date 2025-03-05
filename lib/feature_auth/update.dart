@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Update extends StatelessWidget {
+ static const String routeNamed = "/update-profile";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
