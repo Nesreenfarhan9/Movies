@@ -66,7 +66,6 @@ class ProfileScreen extends StatelessWidget {
                       AppTheme.red,
                       Icons.exit_to_app,
                       () {
-                        Navigator.pushNamed(context, Update.routeNamed);
                       },
                     ),
                   ],

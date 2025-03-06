@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/Custom_Bottom_Navigation_Bar.dart';
+import 'package:movies/feature_home/Custom_Bottom_Navigation_Bar.dart';
 import 'package:movies/shared/app_theme.dart';
-import 'package:movies/tab/Profile_screen.dart';
-import 'package:movies/tab/home_screen.dart';
-import 'package:movies/tab/search_screen.dart';
+import '../feature_home/tab/Profile_screen.dart';
+import '../feature_home/tab/explore_screen.dart';
+import '../feature_home/tab/home_screen.dart';
+import '../feature_home/tab/search_screen.dart';
 import 'profile_bloc.dart';
-import 'package:movies/tab/explore_screen.dart';
 
 class ProfilePageScreen extends StatefulWidget {
   static const String routeNamed = "/home";

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../shared/Textfieldwidget.dart';
+import '../shared/custom_text_filed.dart';
 import '../shared/app_theme.dart';
 import '../shared/custom_elevated_button.dart';
+import 'login.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});
 
-  static const String routeNamed = 'forget/';
+  static const String routeNamed = 'forget';
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class ForgetPasswordScreen extends StatelessWidget {
             Icons.arrow_back,
             color: AppTheme.yellow,
           ),
-          onPressed: () {},
+          onPressed: () {Navigator.pushReplacementNamed(context,LoginScreen.routeNamed);},
         ),
         title: Text('ForgetPassword'),
       ),

@@ -9,7 +9,7 @@ class Update extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: Icon(Icons.arrow_back, color: Colors.yellow),
+        leading: IconButton( color: Colors.yellow, onPressed: () {Navigator.pop(context);  }, icon: Icon(Icons.arrow_back),),
         title: Text('Pick Avatar', style: TextStyle(color: Colors.yellow)),
         centerTitle: true,
       ),

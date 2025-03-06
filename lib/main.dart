@@ -5,6 +5,7 @@ import 'package:movies/feature_auth/login.dart';
 import 'package:movies/feature_auth/profile%20_page_screen.dart';
 
 import 'feature_auth/forget_password_screen.dart';
+import 'feature_auth/register/register.dart';
 import 'onboarding/widgets/home_onboarding_screen.dart';
 
 void main() {
@@ -18,12 +19,12 @@ class MoviesApp extends StatelessWidget {
       routes: {
         ProfilePageScreen.routeNamed: (_) => ProfilePageScreen(),
         Update.routeNamed: (_) => Update(),
-       
         LoginScreen.routeNamed: (_) => LoginScreen(),
         HomeOnboardingScreen.routeNamed: (_) => HomeOnboardingScreen(),
         ForgetPasswordScreen.routeNamed: (_) => ForgetPasswordScreen(),
+        RegisterScreen.routeNamed: (_) => RegisterScreen(),
       },
-      initialRoute:  ProfilePageScreen.routeNamed,
+      initialRoute: HomeOnboardingScreen.routeNamed,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.LightTheme,
       darkTheme: AppTheme.DarkTheme,

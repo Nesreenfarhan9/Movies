@@ -6,13 +6,13 @@ class OnboardingWidget extends StatelessWidget {
   OnboardingWidget({
     super.key,
     required this.text1,
-    this.text2,
+    required this.text2,
     required this.image,
   });
 
   String image;
   String text1;
-  String? text2;
+  String text2;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class OnboardingWidget extends StatelessWidget {
                   height: 24,
                 ),
                 Text(
-                  text2!,
+                  text2,
                   style: textTheme.titleLarge,
                 ),
                 SizedBox(
