@@ -19,8 +19,9 @@ class Update extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => update()));
+                 Navigator.pop(context);
+                //Navigator.push(
+                   // context, MaterialPageRoute(builder: (context) => update()));
               },
               child: CircleAvatar(
                 radius: 50,

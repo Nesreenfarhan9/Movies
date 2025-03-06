@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movies/feature_auth/profile%20_page_screen.dart';
+import 'package:movies/feature_auth/profile_screen.dart';
 import 'package:movies/feature_auth/register_screen.dart';
 
 import '../shared/Textfieldwidget.dart';
@@ -73,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => ProfilePageScreen()),
                     );
 
                   },
