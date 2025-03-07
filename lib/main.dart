@@ -3,7 +3,6 @@ import 'package:movies/feature_auth/update.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/feature_auth/login.dart';
 import 'package:movies/feature_auth/profile%20_page_screen.dart';
-
 import 'feature_auth/forget_password_screen.dart';
 import 'onboarding/widgets/home_onboarding_screen.dart';
 

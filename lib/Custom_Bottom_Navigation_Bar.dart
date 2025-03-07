@@ -15,7 +15,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 10, left: 10),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(22),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: AppTheme.gray,
