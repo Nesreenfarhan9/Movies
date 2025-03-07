@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../shared/app_theme.dart';
 
 
 class RegisterScreen extends StatefulWidget {
@@ -7,6 +8,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  
   int selectedAvatarIndex = 0;
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
@@ -25,7 +27,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: const Icon(Icons.arrow_back, color: Colors.yellow),
+        leading:  IconButton(
+              icon: const Icon(Icons.arrow_back, color:Colors.yellow ),
+              onPressed: () {
+              Navigator.pop(context); 
+                },
+                  ),
+
+         
+        
+        
         title: const Text('Register', style: TextStyle(color: Colors.yellow)),
         centerTitle: true,
       ),

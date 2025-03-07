@@ -84,6 +84,7 @@ class LoginScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   ),
+                  
                   child: const Text("Login", style: TextStyle(color: AppTheme.black, fontSize: 18)),
                 ),
               ),
