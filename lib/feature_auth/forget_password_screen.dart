@@ -22,7 +22,9 @@ class ForgetPasswordScreen extends StatelessWidget {
             Icons.arrow_back,
             color: AppTheme.yellow,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         title: Text('ForgetPassword'),
       ),

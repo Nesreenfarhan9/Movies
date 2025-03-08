@@ -9,7 +9,10 @@ class Update extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: Icon(Icons.arrow_back, color: Colors.yellow),
+        leading: IconButton( 
+          icon: Icon(Icons.arrow_back, color: Colors.yellow),
+          onPressed: () {
+            Navigator.pop(context);},),
         title: Text('Pick Avatar', style: TextStyle(color: Colors.yellow)),
         centerTitle: true,
       ),
@@ -19,8 +22,9 @@ class Update extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => update()));
+                 Navigator.pop(context);
+                //Navigator.push(
+                   // context, MaterialPageRoute(builder: (context) => update()));
               },
               child: CircleAvatar(
                 radius: 50,
@@ -84,7 +88,9 @@ class Update extends StatelessWidget {
                 backgroundColor: Colors.yellow,
                 minimumSize: Size(double.infinity, 50),
               ),
-              onPressed: () {},
+              onPressed: () {
+                 Navigator.pop(context);
+              },
               child: const Text('Update Data',
                   style: TextStyle(color: Colors.black)),
             ),

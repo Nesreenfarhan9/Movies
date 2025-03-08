@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/register.dart';
+import 'package:movies/feature_auth/profile%20_page_screen.dart';
+import 'package:movies/feature_auth/profile_screen.dart';
+import 'package:movies/feature_auth/register_screen.dart';
+
 import '../shared/Textfieldwidget.dart';
 import 'package:movies/tab/home_screen.dart';
 import 'package:movies/shared/app_theme.dart';
@@ -72,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      MaterialPageRoute(builder: (context) => ProfilePageScreen()),
                     );
 
                   },
@@ -81,6 +84,7 @@ class LoginScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   ),
+                  
                   child: const Text("Login", style: TextStyle(color: AppTheme.black, fontSize: 18)),
                 ),
               ),

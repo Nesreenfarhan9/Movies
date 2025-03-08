@@ -3,7 +3,6 @@ import 'package:movies/feature_auth/update.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/feature_auth/login.dart';
 import 'package:movies/feature_auth/profile%20_page_screen.dart';
-
 import 'feature_auth/forget_password_screen.dart';
 import 'onboarding/widgets/home_onboarding_screen.dart';
 
@@ -18,12 +17,11 @@ class MoviesApp extends StatelessWidget {
       routes: {
         ProfilePageScreen.routeNamed: (_) => ProfilePageScreen(),
         Update.routeNamed: (_) => Update(),
-       
         LoginScreen.routeNamed: (_) => LoginScreen(),
         HomeOnboardingScreen.routeNamed: (_) => HomeOnboardingScreen(),
         ForgetPasswordScreen.routeNamed: (_) => ForgetPasswordScreen(),
       },
-      initialRoute:  LoginScreen.routeNamed,
+      initialRoute: HomeOnboardingScreen.routeNamed,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.LightTheme,
       darkTheme: AppTheme.DarkTheme,

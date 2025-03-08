@@ -6,26 +6,39 @@ class CustomBottomNavigationBar extends StatelessWidget {
   final Function(int) onItemTapped;
 
   const CustomBottomNavigationBar({
-    Key? key,
     required this.selectedIndex,
     required this.onItemTapped,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      backgroundColor: Colors.grey[800],
-      selectedItemColor: AppTheme.yellow,
-      unselectedItemColor: AppTheme.primary,
-      currentIndex: selectedIndex,
-      onTap: onItemTapped,
-      items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-        BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
-        BottomNavigationBarItem(icon: Icon(Icons.explore), label: ""),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(right: 10, left: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(22),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: AppTheme.gray,
+          selectedItemColor: AppTheme.yellow,
+          unselectedItemColor: AppTheme.primary,
+          currentIndex: selectedIndex,
+          onTap: onItemTapped,
+          items: [
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/icons/home.png')),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/icons/search.png')),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/icons/explore.png')),
+                label: ""),
+            BottomNavigationBarItem(
+                icon: ImageIcon(AssetImage('assets/icons/profile.png')),
+                label: ""),
+          ],
+        ),
+      ),
     );
   }
 }
