@@ -3,6 +3,7 @@ import '../shared/app_theme.dart';
 
 
 class RegisterScreen extends StatefulWidget {
+    static const String routeNamed = "/register";
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }

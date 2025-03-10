@@ -10,6 +10,7 @@ class AppTheme {
 
   static ThemeData LightTheme = ThemeData();
   static ThemeData DarkTheme = ThemeData(
+    scaffoldBackgroundColor: black,
     primaryColor: primary,
     textTheme: const TextTheme(
       displaySmall:

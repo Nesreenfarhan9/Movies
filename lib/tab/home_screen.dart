@@ -1,123 +1,185 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:carousel_slider/carousel_slider.dart' as slider;
 import 'package:movies/MovieCarousel.dart';
+import 'package:movies/MoviesListScreen.dart';
 import 'package:movies/movie_bloc.dart';
 import 'package:movies/movie_state.dart';
+import 'package:movies/model/movie_model.dart';
+import 'package:movies/shared/app_theme.dart';
+import 'package:movies/movie_event.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+_HomeScreenState createState() => _HomeScreenState();
+   }
+class _HomeScreenState extends State<HomeScreen> {
+  String currentGenre = "Action"; 
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    BlocProvider.of<MovieBloc>(context).add(FetchMovies()); 
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // الخلفية
-          Positioned.fill(
-            child: Image.asset(
-              "assets/images/home_background.png",
-              fit: BoxFit.cover,
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.70,
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset(
+                "assets/images/home_background.png",
+                fit: BoxFit.cover,
+              ),
             ),
           ),
 
-          // محتوى الصفحة
           BlocBuilder<MovieBloc, MovieState>(
             builder: (context, state) {
               if (state is MovieLoading) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is MovieLoaded) {
-                return SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // العنوان
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Available Now",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
+                final latestMovies = state.movies; 
 
-                      // السلايدر للأفلام المميزة
-                      MovieCarousel(movies: state.movies),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 30),
 
-                      // قسم أفلام الأكشن
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Action",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                "See More →",
-                                style: TextStyle(color: Colors.yellow),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    Image.asset(
+                      "assets/images/availablenow.png",
+                      width: 270,
+                      height: 93,
+                      fit: BoxFit.contain,
+                    ),
 
-                      // عرض أفلام الأكشن
-                      SizedBox(
-                        height: 150,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: state.movies.length,
-                          itemBuilder: (context, index) {
-                            final movie = state.movies[index];
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(
-                                      movie.image,
-                                      width: 100,
-                                      height: 140,
-                                      fit: BoxFit.cover,
-                                    ),
+                    MovieCarousel(
+                      movies: latestMovies,
+                      onMovieChanged: (Movie movie) {
+                        setState(() {
+                          currentGenre = movie.genre; 
+                        });
+                      },
+                    ),
+
+                    Image.asset(
+                      "assets/images/watchnow.png",
+                      width: 330,
+                      height: 170,
+                      fit: BoxFit.contain,
+                    ),
+
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  currentGenre, 
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  SizedBox(height: 5),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => MoviesListScreen(
+                                          genre: currentGenre,
+                                          movies: state.movies,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    "See More →",
+                                    style: TextStyle(color: AppTheme.yellow),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          Expanded(
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.movies
+                                  .where((movie) => movie.genre == currentGenre)
+                                  .length, 
+                              itemBuilder: (context, index) {
+                                final filteredMovies = state.movies
+                                    .where((movie) => movie.genre == currentGenre)
+                                    .toList();
+                                final movie = filteredMovies[index];
+
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Stack(
                                     children: [
-                                      Icon(Icons.star,
-                                          color: Colors.yellow, size: 16),
-                                      SizedBox(width: 4),
-                                      Text(
-                                        movie.rating.toString(),
-                                        style: TextStyle(color: Colors.white),
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          movie.image,
+                                          width: MediaQuery.of(context).size.width * 0.2,
+                                          height: MediaQuery.of(context).size.height * 0.4,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 5,
+                                        left: 10,
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 6, vertical: 4),
+                                          decoration: BoxDecoration(
+                                            color: AppTheme.black.withOpacity(0.7),
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.star,
+                                                  color: AppTheme.yellow, size: 14),
+                                              SizedBox(width: 3),
+                                              Text(
+                                                movie.rating.toString(),
+                                                style: TextStyle(
+                                                    color: AppTheme.primary,
+                                                    fontSize: 12),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 );
               } else if (state is MovieError) {
                 return Center(
-                    child: Text("Error: ${state.message}",
-                        style: TextStyle(color: Colors.white)));
+                  child: Text(
+                    "Error: ${state.message}",
+                    style: TextStyle(color: AppTheme.primary),
+                  ),
+                );
               }
               return Container();
             },
@@ -127,4 +189,5 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
 
