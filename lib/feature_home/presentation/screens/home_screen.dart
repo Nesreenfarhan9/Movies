@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/MovieCarousel.dart';
-import 'package:movies/MoviesListScreen.dart';
-import 'package:movies/movie_bloc.dart';
-import 'package:movies/movie_state.dart';
-import 'package:movies/model/movie_model.dart';
+import 'package:movies/feature_home/presentation/view_model/MovieCarousel.dart';
+import 'package:movies/feature_home/presentation/screens/MoviesListScreen.dart';
+import 'package:movies/feature_home/presentation/cubits/movie_bloc.dart';
+import 'package:movies/feature_home/presentation/cubits/movie_state.dart';
 import 'package:movies/shared/app_theme.dart';
-import 'package:movies/movie_event.dart';
+import 'package:movies/feature_home/data/repositories/movie_event.dart';
+
+import '../../data/models/movie_model.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
 _HomeScreenState createState() => _HomeScreenState();
    }
 class _HomeScreenState extends State<HomeScreen> {
-  String currentGenre = "Action"; 
+  String currentGenre = "Action";
 
   @override
   void didChangeDependencies() {
@@ -23,6 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.sizeOf(context);
+
     return Scaffold(
       body: Stack(
         children: [
@@ -31,8 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 0,
             right: 0,
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.70,
-              width: MediaQuery.of(context).size.width,
+              height: screenSize.height * 0.70,
+              width: screenSize.width,
               child: Image.asset(
                 "assets/images/home_background.png",
                 fit: BoxFit.cover,
@@ -54,8 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
                     Image.asset(
                       "assets/images/availablenow.png",
-                      width: 270,
-                      height: 93,
+                      width: screenSize.width*.9,
+                      height: screenSize.height*.1,
                       fit: BoxFit.contain,
                     ),
 
@@ -132,9 +135,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         borderRadius: BorderRadius.circular(10),
                                         child: Image.network(
                                           movie.image,
-                                          width: MediaQuery.of(context).size.width * 0.2,
-                                          height: MediaQuery.of(context).size.height * 0.4,
-                                          fit: BoxFit.cover,
+                                          width: screenSize.width * 0.3,
+                                          height: screenSize.height * 0.5,
+                                          fit: BoxFit.fill,
                                         ),
                                       ),
                                       Positioned(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies/model/movie_model.dart';
 import 'package:movies/shared/app_theme.dart';
+
+import '../../data/models/movie_model.dart';
+
 
 class MoviesListScreen extends StatelessWidget {
   final String genre;
@@ -35,7 +37,7 @@ class MoviesListScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   movie.image,
-                  height: 180,
+                  height: 1,
                   fit: BoxFit.cover,
                 ),
               ),
