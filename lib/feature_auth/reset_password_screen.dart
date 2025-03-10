@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:movies/reset_password_provider.dart';
 import 'package:movies/shared/Textfieldwidget.dart';
+import 'package:movies/shared/app_theme.dart';
 import 'package:movies/shared/custom_elevated_button.dart';
 
-class ResetPasswordScreen extends StatelessWidget {
-  final TextEditingController oldPasswordController = TextEditingController();
-  final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-
+class ResetPasswordScreen extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final resetState = ref.watch(resetPasswordProvider);
+    final oldPasswordController = TextEditingController();
+    final newPasswordController = TextEditingController();
+    final confirmPasswordController = TextEditingController();
+
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppTheme.black,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title:
-            const Text('Reset Password', style: TextStyle(color: Colors.amber)),
-        centerTitle: true ,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.amber),
-          onPressed: () => Navigator.pop(context),
-        ),
+        title: const Text('Reset Password',
+            style: TextStyle(color: AppTheme.primary)),
+        backgroundColor: AppTheme.black,
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Image.asset('assets/images/forgot_password.png', height: 200),
-              const SizedBox(height: 24),
+              const SizedBox(height: 40),
+              Image.asset('assets/images/forgot_password.png', height: 150),
+              const SizedBox(height: 40),
               CustomTextField(
                 hintText: 'Old Password',
                 icon: Icons.lock_outline,
@@ -39,7 +39,7 @@ class ResetPasswordScreen extends StatelessWidget {
               const SizedBox(height: 16),
               CustomTextField(
                 hintText: 'New Password',
-                icon: Icons.lock_reset,
+                icon: Icons.lock,
                 isPassword: true,
                 controller: newPasswordController,
               ),
@@ -50,36 +50,32 @@ class ResetPasswordScreen extends StatelessWidget {
                 isPassword: true,
                 controller: confirmPasswordController,
               ),
-              const SizedBox(height: 24),
+              if (resetState.errorMessage != null)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(resetState.errorMessage!,
+                      style: const TextStyle(color: AppTheme.red)),
+                ),
+              const SizedBox(height: 20),
               CustomElevatedButton(
                 lable: 'Reset Password',
-                onpressed: () => resetPassword(context),
-                widthOfElevatedButton: 0.9,
-                buttonColor: Colors.amber,
-                labelColor: Colors.black,
+                onpressed: resetState.isLoading
+                    ? () {}
+                    : () {
+                        ref.read(resetPasswordProvider.notifier).resetPassword(
+                              oldPasswordController.text,
+                              newPasswordController.text,
+                              confirmPasswordController.text,
+                            );
+                      },
+                widthOfElevatedButton: 1,
+                buttonColor: AppTheme.yellow,
+                labelColor: AppTheme.black,
               ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  void resetPassword(BuildContext context) {
-    if (newPasswordController.text == confirmPasswordController.text) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Password changed successfully!',
-                style: TextStyle(color: Colors.white)),
-            backgroundColor: Colors.green),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Passwords do not match!',
-                style: TextStyle(color: Colors.white)),
-            backgroundColor: Colors.red),
-      );
-    }
   }
 }
