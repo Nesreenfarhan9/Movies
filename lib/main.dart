@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/feature_auth/presentation/cubit/auth_cubit.dart';
+import 'package:movies/feature_home/presentation/screens/movies_details_screen.dart';
+import 'package:movies/feature_home/presentation/screens/movies_details_screen.dart';
 import 'package:movies/tab/profile_tab/update.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/tab/profile_tab/profile%20_page_screen.dart';
@@ -30,8 +32,9 @@ class MoviesApp extends StatelessWidget {
           HomeOnboardingScreen.routeNamed: (_) => HomeOnboardingScreen(),
           ForgetPasswordScreen.routeNamed: (_) => ForgetPasswordScreen(),
           RegisterScreen.routeNamed: (_) => RegisterScreen(),
+          MoviesDetailsScreen.routeNamed: (_) => MoviesDetailsScreen(),
         },
-        initialRoute:  HomeOnboardingScreen.routeNamed,
+        initialRoute:  ProfilePageScreen.routeNamed,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.LightTheme,
         darkTheme: AppTheme.DarkTheme,

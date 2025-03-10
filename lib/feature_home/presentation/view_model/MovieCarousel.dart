@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:movies/model/movie_model.dart';
 import 'package:movies/shared/app_theme.dart';
+
+import '../../data/models/movie_model.dart';
 
 class MovieCarousel extends StatefulWidget {
   final List<Movie> movies;
@@ -18,11 +19,14 @@ class _MovieCarouselState extends State<MovieCarousel> {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.sizeOf(context);
     return Column(
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: 260,
+            height: screenSize.height * .37,
+            //clipBehavior: ,
+
             autoPlay: true,
             enlargeCenterPage: true,
             onPageChanged: (index, reason) {
@@ -31,21 +35,24 @@ class _MovieCarouselState extends State<MovieCarousel> {
               });
               widget.onMovieChanged(widget.movies[index]);
             },
+
+            enlargeFactor: 0.3,
+            viewportFraction: 0.6,
           ),
           items: widget.movies.map((movie) {
             return ClipRRect(
-              borderRadius: BorderRadius.circular(3),
+              borderRadius: BorderRadius.circular(30),
               child: Stack(
                 children: [
                   Image.network(
                     movie.image,
-                    fit: BoxFit.cover,
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 300,
+                    fit: BoxFit.contain,
+                    width: screenSize.width * 0.6,
+                    height: screenSize.width * 0.9,
                   ),
                   Positioned(
                     top: 10,
-                    left: 10,
+                    left: 20,
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
@@ -69,11 +76,13 @@ class _MovieCarouselState extends State<MovieCarousel> {
             );
           }).toList(),
         ),
-        Text(
-          widget.movies[currentIndex].title,
-          style: TextStyle(
-              color: AppTheme.primary, fontSize: 18, fontWeight: FontWeight.bold),
-        ),
+        // Text(
+        //   widget.movies[currentIndex].title,
+        //   style: TextStyle(
+        //       color: AppTheme.primary,
+        //       fontSize: 18,
+        //       fontWeight: FontWeight.bold),
+        // ),
       ],
     );
   }
