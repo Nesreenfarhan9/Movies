@@ -9,10 +9,7 @@ class Update extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: IconButton( 
-          icon: Icon(Icons.arrow_back, color: Colors.yellow),
-          onPressed: () {
-            Navigator.pop(context);},),
+        leading: Icon(Icons.arrow_back, color: Colors.yellow),
         title: Text('Pick Avatar', style: TextStyle(color: Colors.yellow)),
         centerTitle: true,
       ),
@@ -88,9 +85,7 @@ class Update extends StatelessWidget {
                 backgroundColor: Colors.yellow,
                 minimumSize: Size(double.infinity, 50),
               ),
-              onPressed: () {
-                 Navigator.pop(context);
-              },
+              onPressed: () {},
               child: const Text('Update Data',
                   style: TextStyle(color: Colors.black)),
             ),
