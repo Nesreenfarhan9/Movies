@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/Custom_Bottom_Navigation_Bar.dart';
 import 'package:movies/shared/app_theme.dart';
-import 'package:movies/tab/Profile_screen.dart';
+import 'package:movies/tab/profile_tab/Profile_screen.dart';
 import 'package:movies/tab/home_screen.dart';
 import 'package:movies/tab/search_screen.dart';
 import 'profile_bloc.dart';

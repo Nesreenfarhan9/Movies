@@ -2,6 +2,7 @@ class APIConstants {
   static const String baseURL = 'https://route-movie-apis.vercel.app/';
   static const String registerEndpoint = 'auth/register';
   static const String loginEndpoint = 'auth/login';
+  static const String forgetPasswordEndpoint = 'auth/reset-password';
 }
 class Validation {
   static  String? emailValidator(String? email) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies/feature_auth/login.dart';
+import 'package:movies/feature_auth/presentation/screens/login.dart';
+import 'package:movies/feature_auth/presentation/screens/register_screen.dart';
 
 import '../../shared/app_theme.dart';
 import '../../shared/custom_elevated_button.dart';

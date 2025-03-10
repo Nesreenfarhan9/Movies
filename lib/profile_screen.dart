@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/shared/app_theme.dart';
-import 'profile_bloc.dart';
+import 'tab/profile_tab/profile_bloc.dart';
 import 'package:movies/Custom_Bottom_Navigation_Bar.dart';
 
 class ProfileScreen extends StatelessWidget {
