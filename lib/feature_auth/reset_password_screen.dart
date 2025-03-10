@@ -16,7 +16,7 @@ class ResetPasswordScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         title:
             const Text('Reset Password', style: TextStyle(color: Colors.amber)),
-        centerTitle: ,
+        centerTitle: true ,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.amber),
           onPressed: () => Navigator.pop(context),
