@@ -66,7 +66,11 @@ class Update extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () { Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ResetPasswordScreen()),
+                            );},
                 child: Text('Reset Password',
                     style: TextStyle(color: Colors.yellow)),
               ),
