@@ -1,7 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:movies/services/api_service.dart';
 
-class Update extends StatelessWidget {
- static const String routeNamed = "/update-profile";
+class Update extends StatefulWidget {
+  static const String routeNamed = "/update-profile";
+
+  @override
+  _UpdateState createState() => _UpdateState();
+}
+
+class _UpdateState extends State<Update> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  int selectedAvatarId = 1;
+  bool isLoading = false;
+
+  Future<void> _updateProfile() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    ApiService apiService = ApiService();
+    bool success = await apiService.updateProfile(
+      nameController.text.trim(),
+      phoneController.text.trim(),
+      selectedAvatarId,
+    );
+
+    setState(() {
+      isLoading = false;
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(success ? "Profile updated successfully!" : "Failed to update profile. Try again.")),
+    );
+
+    if (success) {
+      Navigator.pop(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -9,10 +45,12 @@ class Update extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        leading: IconButton( 
+        leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.yellow),
           onPressed: () {
-            Navigator.pop(context);},),
+            Navigator.pop(context);
+          },
+        ),
         title: Text('Pick Avatar', style: TextStyle(color: Colors.yellow)),
         centerTitle: true,
       ),
@@ -21,18 +59,25 @@ class Update extends StatelessWidget {
         child: Column(
           children: [
             GestureDetector(
-              onTap: () {
-                 Navigator.pop(context);
-                //Navigator.push(
-                   // context, MaterialPageRoute(builder: (context) => update()));
+              onTap: () async {
+                int? avatarId = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AvatarSelectionScreen()),
+                );
+                if (avatarId != null) {
+                  setState(() {
+                    selectedAvatarId = avatarId;
+                  });
+                }
               },
               child: CircleAvatar(
                 radius: 50,
-                backgroundImage: AssetImage('assets/images/avatar1.png'),
+                backgroundImage: AssetImage('assets/images/avatar$selectedAvatarId.png'),
               ),
             ),
             const SizedBox(height: 20),
             TextField(
+              controller: nameController,
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 hintText: 'John Safwat',
@@ -48,6 +93,7 @@ class Update extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             TextField(
+              controller: phoneController,
               style: TextStyle(color: Colors.white),
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(
@@ -67,8 +113,7 @@ class Update extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: TextButton(
                 onPressed: () {},
-                child: Text('Reset Password',
-                    style: TextStyle(color: Colors.yellow)),
+                child: Text('Reset Password', style: TextStyle(color: Colors.yellow)),
               ),
             ),
             const SizedBox(height: 20),
@@ -78,9 +123,10 @@ class Update extends StatelessWidget {
                 backgroundColor: Colors.red,
                 minimumSize: Size(double.infinity, 50),
               ),
-              onPressed: () {},
-              child: const Text('Delete Account',
-                  style: TextStyle(color: Colors.white)),
+              onPressed: () {
+                // Implement Delete Account Functionality
+              },
+              child: const Text('Delete Account', style: TextStyle(color: Colors.white)),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -88,11 +134,8 @@ class Update extends StatelessWidget {
                 backgroundColor: Colors.yellow,
                 minimumSize: Size(double.infinity, 50),
               ),
-              onPressed: () {
-                 Navigator.pop(context);
-              },
-              child: const Text('Update Data',
-                  style: TextStyle(color: Colors.black)),
+              onPressed: _updateProfile,
+              child: const Text('Update Data', style: TextStyle(color: Colors.black)),
             ),
           ],
         ),
@@ -101,15 +144,14 @@ class Update extends StatelessWidget {
   }
 }
 
-class update extends StatelessWidget {
+class AvatarSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title:
-            const Text('Select Avatar', style: TextStyle(color: Colors.yellow)),
+        title: const Text('Select Avatar', style: TextStyle(color: Colors.yellow)),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(16.0),
@@ -123,7 +165,7 @@ class update extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pop(context, index + 1);
             },
             child: Container(
               decoration: BoxDecoration(
@@ -132,8 +174,7 @@ class update extends StatelessWidget {
               ),
               child: CircleAvatar(
                 backgroundColor: Colors.white10,
-                backgroundImage:
-                    AssetImage('assets/images/avatar${index + 1}.png'),
+                backgroundImage: AssetImage('assets/images/avatar${index + 1}.png'),
               ),
             ),
           );
