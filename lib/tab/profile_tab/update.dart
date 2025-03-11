@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies/feature_auth/reset_password_screen.dart';
 
 class Update extends StatelessWidget {
  static const String routeNamed = "/update-profile";

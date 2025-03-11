@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/feature_auth/presentation/cubit/auth_cubit.dart';
-import 'package:movies/movie_bloc.dart';
-import 'package:movies/movie_event.dart';  
-import 'package:movies/movie_repository.dart';
+import 'package:movies/feature_home/data/data_sources/movie_repository.dart';
+import 'package:movies/feature_home/data/repositories/movie_event.dart';
+import 'package:movies/feature_home/presentation/cubits/movie_bloc.dart';
+
 import 'package:movies/tab/profile_tab/update.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/tab/profile_tab/profile%20_page_screen.dart';
@@ -30,20 +31,24 @@ void main() {
 class MoviesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        ProfilePageScreen.routeNamed: (_) => ProfilePageScreen(),
-        Update.routeNamed: (_) => Update(),
-        LoginScreen.routeNamed: (_) => LoginScreen(),
-        HomeOnboardingScreen.routeNamed: (_) => HomeOnboardingScreen(),
-        ForgetPasswordScreen.routeNamed: (_) => ForgetPasswordScreen(),
-        RegisterScreen.routeNamed: (_) => RegisterScreen(),
-      },
-      initialRoute: HomeOnboardingScreen.routeNamed,
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.LightTheme,
-      darkTheme: AppTheme.DarkTheme,
-      themeMode: ThemeMode.dark,
+    return BlocProvider(
+      create: (_) => AuthCubit(),
+      child: MaterialApp(
+        routes: {
+          ProfilePageScreen.routeNamed: (_) => ProfilePageScreen(),
+          Update.routeNamed: (_) => Update(),
+
+         LoginScreen.routeNamed: (_) => LoginScreen(),
+          HomeOnboardingScreen.routeNamed: (_) => HomeOnboardingScreen(),
+          ForgetPasswordScreen.routeNamed: (_) => ForgetPasswordScreen(),
+          RegisterScreen.routeNamed: (_) => RegisterScreen(),
+        },
+        initialRoute:  ProfilePageScreen.routeNamed,
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.LightTheme,
+        darkTheme: AppTheme.DarkTheme,
+        themeMode: ThemeMode.dark,
+      ),
     );
   }
 }

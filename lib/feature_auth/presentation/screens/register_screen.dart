@@ -12,7 +12,7 @@ import '../../../shared/app_theme.dart';
 import '../../../shared/constants.dart';
 import '../../../shared/custom_elevated_button.dart';
 import '../../../shared/ShowItem.dart';
-import '../../../model/avtar_model.dart';
+import '../view_model/avtar_model.dart';
 import '../../../shared/loading_indicator.dart';
 import '../../../tab/profile_tab/profile _page_screen.dart';
 

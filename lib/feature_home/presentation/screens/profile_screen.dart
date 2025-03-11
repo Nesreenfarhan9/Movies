@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies/shared/Custom_Bottom_Navigation_Bar.dart';
 import 'package:movies/shared/app_theme.dart';
-import 'tab/profile_tab/profile_bloc.dart';
-import 'package:movies/Custom_Bottom_Navigation_Bar.dart';
+import '../../../tab/profile_tab/profile_bloc.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const routeNamed = "/home";
