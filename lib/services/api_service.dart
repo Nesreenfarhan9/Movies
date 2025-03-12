@@ -1,28 +1,42 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:movies/services/UpdateProfileRequest.dart';
+import 'package:movies/services/UpdateProfileResponse.dart';
 
 class ApiService {
-  final String baseUrl = "https://route-movie-apis.vercel.app/";
+  final Dio _dio = Dio();
+
+  final String baseUrl = 'https://route-movie-apis.vercel.app/';
   final String token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDFkMGFkODZlM2ZmZmIwM2IzOGEwOCIsImVtYWlsIjoiYW1yMjRAZ21haWwuY29tIiwiaWF0IjoxNzMyMzY4MDQ1fQ.vhf0NBQzj8EE9AinCX3ezu4yz1R8CNpt8xBawnTyMhw";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjkwYzRiZjFkZGFjMWRhYzEzMDYwNCIsImVtYWlsIjoiYW1yMkBnbWFpbC5jb20iLCJpYXQiOjE3NDE3Mzg1MjZ9.5_lyzog_g6AukKAU4UFk8-Q3rM2Fn9ZffTKcCTUuMTY";
 
-  Future<bool> updateProfile(String name, String phone, int avatarId) async {
-    final response = await http.put(
-      Uri.parse('$baseUrl/update-profile/'),
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer $token", // Added Authorization
-      },
-      body: jsonEncode({"name": name, "phone": phone, "avatarId": avatarId}),
-    );
-    
+  Future<UpdateProfileResponse> updateProfile(UpdateProfileRequest request, String token) async {
+    try {
+      print("Request Data: ${request.toJson()}");
 
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      print("Profile updated successfully: ${response.body}");
-      return true;
-    } else {
-      print("Failed to update profile: ${response.statusCode} - ${response.body}");
-      return false;
-    }
+      final response = await _dio.patch(
+        "$baseUrl/profile",
+        data:  jsonEncode(request.toJson()),
+        options: Options(
+          headers: {
+            "Authorization": "Bearer $token",
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
+        ),
+      );
+
+      print("Response Data: ${response.data}");
+
+      if (response.statusCode == 200) {
+        return UpdateProfileResponse.fromJson(response.data);
+      } else {
+        throw Exception("Failed to update profile: ${response.data['message']}");
+      }
+    } catch (e) {
+      print("Error in updateProfile API Call: $e");
+      throw Exception("Error updating profile: $e");    }
   }
 }

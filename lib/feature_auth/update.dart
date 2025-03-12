@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movies/services/api_service.dart';
+import 'package:movies/services/UpdateProfileRequest.dart';
+import 'package:movies/shared/constants.dart';
+import 'package:movies/services/api_service.dart';
+import 'package:movies/services/UpdateProfileResponse.dart';
 
 class Update extends StatefulWidget {
   static const String routeNamed = "/update-profile";
@@ -19,25 +23,49 @@ class _UpdateState extends State<Update> {
       isLoading = true;
     });
 
+    final token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjkwYzRiZjFkZGFjMWRhYzEzMDYwNCIsImVtYWlsIjoiYW1yMkBnbWFpbC5jb20iLCJpYXQiOjE3NDE3Mzg1MjZ9.5_lyzog_g6AukKAU4UFk8-Q3rM2Fn9ZffTKcCTUuMTY";
+
     ApiService apiService = ApiService();
-    bool success = await apiService.updateProfile(
-      nameController.text.trim(),
-      phoneController.text.trim(),
-      selectedAvatarId,
+
+
+    final request = UpdateProfileRequest(
+      email: "user@example.com",
+      avatarId: selectedAvatarId,
+      name: nameController.text.trim().isNotEmpty ? nameController.text.trim() : null,
+      phone: phoneController.text.trim().isNotEmpty ? phoneController.text.trim() : null,
     );
 
-    setState(() {
-      isLoading = false;
-    });
+    print("Sending Request: ${request.toJson()}");
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(success ? "Profile updated successfully!" : "Failed to update profile. Try again.")),
-    );
 
-    if (success) {
+    try {
+      final response = await apiService.updateProfile(request, token);
+
+      print("Response Received: ${response.toJson()}");
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Profile updated successfully: ${response.message}")),
+      );
+
       Navigator.pop(context);
+
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Failed to update profile: $e")),
+      );
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
     }
   }
+
+  void _deleteAccount() {
+
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {

@@ -11,3 +11,4 @@ class ProfileModel {
     required this.historyCount,
   });
 }
+
