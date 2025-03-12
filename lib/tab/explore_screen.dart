@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:movies/movie_bloc.dart';
-import 'package:movies/movie_state.dart';
+import 'package:movies/feature_home/presentation/cubits/movie_bloc.dart';
+import 'package:movies/feature_home/presentation/cubits/movie_state.dart';
 import 'package:movies/shared/app_theme.dart';
 
 class ExploreScreen extends StatefulWidget {
