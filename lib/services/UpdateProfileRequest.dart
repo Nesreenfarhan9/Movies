@@ -9,7 +9,7 @@ class UpdateProfileRequest {
   Map<String, dynamic> toJson() {
     return {
       if (email != null) 'email': email,
-      if (avatarId != null) 'avaterId': avatarId,
+      if (avatarId != null) 'avatarId': avatarId, // Fixed typo from 'avaterId'
       if (name != null) 'name': name,
       if (phone != null) 'phone': phone,
     };
