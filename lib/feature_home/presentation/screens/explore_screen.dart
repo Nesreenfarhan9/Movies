@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/feature_home/presentation/cubits/movie_bloc.dart';
-import 'package:movies/feature_home/presentation/cubits/movie_state.dart';
+import 'package:movies/feature_home/presentation/cubits/explore_cubit.dart';
+import 'package:movies/feature_home/presentation/cubits/explore_state.dart';
 import 'package:movies/shared/app_theme.dart';
+
 
 class ExploreScreen extends StatefulWidget {
   @override
-  State<ExploreScreen> createState() => _BrowseMoviesScreenState();
+  State<ExploreScreen> createState() => _ExploreScreenState();
 }
 
-class _BrowseMoviesScreenState extends State<ExploreScreen> {
+class _ExploreScreenState extends State<ExploreScreen> {
   String? selectedGenre;
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<ExploreCubit>().fetchMovies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +28,12 @@ class _BrowseMoviesScreenState extends State<ExploreScreen> {
         elevation: 0,
       ),
       backgroundColor: AppTheme.black,
-      body: BlocBuilder<MovieBloc, MovieState>(
+      body: BlocBuilder<ExploreCubit, ExploreState>(
         builder: (context, state) {
-          if (state is MovieLoading) {
+          if (state is ExploreLoading) {
             return const Center(
                 child: CircularProgressIndicator(color: AppTheme.primary));
-          } else if (state is MovieLoaded) {
+          } else if (state is ExploreLoaded) {
             final genres = state.movies.map((m) => m.genre).toSet().toList();
             final filteredMovies = selectedGenre == null
                 ? state.movies
@@ -122,7 +129,7 @@ class _BrowseMoviesScreenState extends State<ExploreScreen> {
                 ),
               ],
             );
-          } else if (state is MovieError) {
+          } else if (state is ExploreError) {
             return Center(
                 child: Text(state.message,
                     style: const TextStyle(color: AppTheme.red)));
@@ -135,3 +142,4 @@ class _BrowseMoviesScreenState extends State<ExploreScreen> {
     );
   }
 }
+

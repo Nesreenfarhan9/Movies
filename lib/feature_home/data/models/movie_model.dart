@@ -2,22 +2,22 @@ class Movie {
   final String title;
   final String image;
   final double rating;
-  final String genre; // تأكد من أن هذه الخاصية موجودة
+  final String genre;
 
   Movie({
     required this.title,
     required this.image,
     required this.rating,
-    required this.genre, 
+    required this.genre,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
-      title: json["title"],
-      image: json["medium_cover_image"],
-      rating: (json["rating"] as num).toDouble(),
-      genre: json["genres"] != null && json["genres"].isNotEmpty
-          ? json["genres"][0] 
+      title: json["title"] ?? "Unknown",
+      image: json["medium_cover_image"] ?? "",
+      rating: (json["rating"] ?? 0).toDouble(),
+      genre: (json["genres"] is List && (json["genres"] as List).isNotEmpty)
+          ? (json["genres"] as List).first.toString() 
           : "Unknown", 
     );
   }

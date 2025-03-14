@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/feature_auth/presentation/cubit/auth_cubit.dart';
 import 'package:movies/feature_home/data/data_sources/movie_repository.dart';
 import 'package:movies/feature_home/data/repositories/movie_event.dart';
+import 'package:movies/feature_home/presentation/cubits/Search_Cubit.dart';
+import 'package:movies/feature_home/presentation/cubits/explore_cubit.dart';
 import 'package:movies/feature_home/presentation/cubits/movie_bloc.dart';
 
 import 'package:movies/tab/profile_tab/update.dart';
@@ -22,7 +24,10 @@ void main() {
       providers: [
         BlocProvider(create: (_) => AuthCubit()),
         BlocProvider(create: (_) => MovieBloc(movieRepository)..add(FetchMovies())),
+        BlocProvider(create: (_) => SearchCubit()),
+        BlocProvider(create: (_) => ExploreCubit()),
       ],
+
       child: MoviesApp(),
     ),
   );
