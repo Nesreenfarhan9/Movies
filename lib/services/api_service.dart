@@ -3,8 +3,15 @@ import 'package:movies/services/UpdateProfileRequest.dart';
 import 'package:movies/services/UpdateProfileResponse.dart';
 
 class ApiService {
-  final Dio _dio = Dio();
-  final String baseUrl = 'https://route-movie-apis.vercel.app/';
+  final Dio _dio = Dio(BaseOptions(
+    followRedirects: true,
+    validateStatus: (status){
+      return status! <= 500;
+    }
+  )
+
+  );
+  final String baseUrl = 'https://route-movie-apis.vercel.app';
 
   Future<UpdateProfileResponse> updateProfile(UpdateProfileRequest request, String token) async {
     try {
