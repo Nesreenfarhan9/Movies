@@ -18,17 +18,17 @@ import 'feature_auth/presentation/screens/register_screen.dart';
 import 'onboarding/widgets/home_onboarding_screen.dart';
 
 void main() {
-  final movieRepository = MovieRepository(); 
+  final movieRepository = MovieRepository();
 
   runApp(
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => AuthCubit()),
-        BlocProvider(create: (_) => MovieBloc(movieRepository)..add(FetchMovies())),
+        BlocProvider(
+            create: (_) => MovieBloc(movieRepository)..add(FetchMovies())),
         BlocProvider(create: (_) => SearchCubit()),
         BlocProvider(create: (_) => ExploreCubit()),
       ],
-
       child: MoviesApp(),
     ),
   );
@@ -43,14 +43,13 @@ class MoviesApp extends StatelessWidget {
         routes: {
           ProfilePageScreen.routeNamed: (_) => ProfilePageScreen(),
           Update.routeNamed: (_) => Update(),
-
-         LoginScreen.routeNamed: (_) => LoginScreen(),
+          LoginScreen.routeNamed: (_) => LoginScreen(),
           HomeOnboardingScreen.routeNamed: (_) => HomeOnboardingScreen(),
           ForgetPasswordScreen.routeNamed: (_) => ForgetPasswordScreen(),
           RegisterScreen.routeNamed: (_) => RegisterScreen(),
           MoviesDetailsScreen.routeNamed: (_) => MoviesDetailsScreen(),
         },
-        initialRoute:  LoginScreen.routeNamed,
+        initialRoute: ProfilePageScreen.routeNamed,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.LightTheme,
         darkTheme: AppTheme.DarkTheme,
