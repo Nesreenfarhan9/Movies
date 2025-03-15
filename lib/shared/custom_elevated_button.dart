@@ -25,6 +25,7 @@ class CustomElevatedButton extends StatelessWidget {
                 .titleLarge
                 ?.copyWith(color: labelColor)),
         style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             fixedSize: Size(
                 MediaQuery.sizeOf(context).width * widthOfElevatedButton, 56),
             backgroundColor: buttonColor));

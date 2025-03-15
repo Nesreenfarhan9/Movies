@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfilePageScreen> {
 
   final List<Widget> _pages = [
     BlocProvider(
-      create: (context) => MovieBloc(MovieRepository())..add(FetchMovies()), // ✅ Provide MovieBloc
+      create: (context) => MovieBloc(MovieRepository())..add(FetchMovies()), 
       child: HomeScreen(),
     ),    SearchScreen(),
     ExploreScreen(),
