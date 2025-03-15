@@ -67,7 +67,7 @@ class Update extends StatelessWidget {
                 onPressed: () { Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ResetPasswordScreen()),
+                                  builder: (context) => resetPasswordScreen()),
                             );},
                 child: Text('Reset Password',
                     style: TextStyle(color: Colors.yellow)),
