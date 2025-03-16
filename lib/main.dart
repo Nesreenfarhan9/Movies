@@ -7,7 +7,6 @@ import 'package:movies/feature_home/presentation/cubits/Search_Cubit.dart';
 import 'package:movies/feature_home/presentation/cubits/explore_cubit.dart';
 import 'package:movies/feature_home/presentation/cubits/movie_bloc.dart';
 import 'package:movies/feature_home/presentation/screens/movies_details_screen.dart';
-
 import 'package:movies/tab/profile_tab/update.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/tab/profile_tab/profile%20_page_screen.dart';
