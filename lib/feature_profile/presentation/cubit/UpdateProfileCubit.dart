@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/services/api_service.dart';
-import 'package:movies/services/UpdateProfileRequest.dart';
-import 'package:movies/services/UpdateProfileResponse.dart';
+
+import '../../data/UpdateProfileRequest.dart';
+import '../../data/UpdateProfileResponse.dart';
+import '../../data/api_service.dart';
 
 abstract class UpdateProfileState {}
 

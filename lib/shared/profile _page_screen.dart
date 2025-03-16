@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/feature_home/presentation/screens/home_screen.dart';
-import 'package:movies/tab/profile_tab/profile_screen.dart';
 import 'package:movies/feature_search&explore/screens/search_screen.dart';
-import '../../feature_home/data/data_sources/movie_repository.dart';
-import '../../feature_home/presentation/cubits/movie_bloc.dart';
-import '../../feature_home/data/repositories/movie_event.dart';
-import '../../shared/Custom_Bottom_Navigation_Bar.dart';
-import 'profile_bloc.dart';
+import '../feature_home/data/data_sources/movie_repository.dart';
+import '../feature_home/presentation/cubits/movie_bloc.dart';
+import '../feature_home/data/repositories/movie_event.dart';
+import '../feature_profile/presentation/profile_bloc.dart';
+import '../feature_profile/presentation/screens/Profile_screen.dart';
+import 'Custom_Bottom_Navigation_Bar.dart';
 import 'package:movies/feature_search&explore/screens/explore_screen.dart';
 
 class ProfilePageScreen extends StatefulWidget {

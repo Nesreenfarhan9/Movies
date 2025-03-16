@@ -8,12 +8,14 @@ class FirstSection extends StatelessWidget {
   final MovieDetails movieDetails;
   final VoidCallback onTap;
   final VoidCallback save;
+  final bool isSaved;
 
   const FirstSection({
     Key? key,
     required this.movieDetails,
     required this.onTap,
     required this.save,
+    required this.isSaved,
   }) : super(key: key);
 
   @override
@@ -27,7 +29,7 @@ class FirstSection extends StatelessWidget {
             movieDetails.backgroundImage,
             fit: BoxFit.fitHeight,
             width: double.infinity,
-            height: screenSize.height * .72,
+            height: screenSize.height * .725,
           ),
           SafeArea(
             child: Padding(
@@ -50,11 +52,17 @@ class FirstSection extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: save,
-                        child: SvgPicture.asset('assets/icons/save.svg'),
+                        child: SvgPicture.asset(
+                          'assets/icons/save.svg',
+                          colorFilter: ColorFilter.mode(
+                            isSaved ? AppTheme.primary : AppTheme.gray,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: screenSize.height * 0.2),
+                  SizedBox(height: screenSize.height * 0.23),
                   GestureDetector(
                     onTap: onTap,
                     child: Container(
@@ -70,7 +78,7 @@ class FirstSection extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: screenSize.height * 0.17),
+                  SizedBox(height: screenSize.height * 0.2),
                   Text(
                     movieDetails.title,
                     textAlign: TextAlign.center,

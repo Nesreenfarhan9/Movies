@@ -4,6 +4,7 @@ import 'package:movies/feature_home/presentation/view_model/first_section.dart';
 import 'package:movies/feature_home/presentation/cubits/movie_details_cubit.dart';
 import 'package:movies/feature_home/presentation/cubits/movie_details_state.dart';
 import 'package:movies/shared/app_theme.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class MoviesDetailsScreen extends StatelessWidget {
@@ -33,10 +34,10 @@ class MoviesDetailsScreen extends StatelessWidget {
                       _showErrorMessage(context, 'Could not launch movie website');
                     }
                   },
-                    save:(){
-                  bool save =  movie.isSaved;
-                  save = true;
-                    }
+                    save: () async {
+                      context.read<MovieDetailsCubit>().toggleSaveStatus();
+                    },
+                  isSaved: movie.isSaved,
                 ),
               ],
             );

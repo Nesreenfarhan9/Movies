@@ -15,7 +15,7 @@ import '../../../shared/constants.dart';
 import '../../../shared/custom_elevated_button.dart';
 
 import '../../../shared/loading_indicator.dart';
-import '../../../tab/profile_tab/profile _page_screen.dart';
+import '../../../shared/profile _page_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String routeNamed = "/register";

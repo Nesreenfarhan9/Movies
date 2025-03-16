@@ -30,7 +30,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
           builder: (context, state) {
             if (state is ExploreLoading) {
               return const Center(
-                  child: CircularProgressIndicator(color: AppTheme.primary));
+                  child: CircularProgressIndicator(color: AppTheme.primary),);
             } else if (state is ExploreLoaded) {
               final genres = state.movies.map((m) => m.genre).toSet().toList();
               final filteredMovies = selectedGenre == null
@@ -81,9 +81,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                       itemCount: filteredMovies.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        childAspectRatio: 0.7,
+                        childAspectRatio: 0.8,
                         crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
+                        mainAxisSpacing: 8,
                       ),
                       itemBuilder: (context, index) {
                         final movie = filteredMovies[index];
@@ -96,29 +96,27 @@ class _ExploreScreenState extends State<ExploreScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  topRight: Radius.circular(12),
+                                borderRadius: const BorderRadius.all(Radius.circular(16),
                                 ),
                                 child: Image.network(
                                   movie.image,
-                                  height: 180,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
+                                  height: 230,
+                                  width: 180,
+                                  fit: BoxFit.fill,
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Text(
-                                  movie.title,
-                                  style: TextStyle(
-                                      color: AppTheme.primary,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
+                              // Padding(
+                              //   padding: EdgeInsets.all(8.0),
+                              //   child: Text(
+                              //     movie.title,
+                              //     style: TextStyle(
+                              //         color: AppTheme.primary,
+                              //         fontSize: 16,
+                              //         fontWeight: FontWeight.bold),
+                              //     maxLines: 1,
+                              //     overflow: TextOverflow.ellipsis,
+                              //   ),
+                              // ),
                             ],
                           ),
                         );

@@ -1,19 +1,18 @@
 import 'package:dio/dio.dart';
-import 'package:movies/services/UpdateProfileRequest.dart';
-import 'package:movies/services/UpdateProfileResponse.dart';
+
+import 'UpdateProfileRequest.dart';
+import 'UpdateProfileResponse.dart';
 
 class ApiService {
   final Dio _dio = Dio(BaseOptions(
-    followRedirects: true,
-    validateStatus: (status){
-      return status! <= 500;
-    }
-  )
-
-  );
+      followRedirects: true,
+      validateStatus: (status) {
+        return status! <= 500;
+      }));
   final String baseUrl = 'https://route-movie-apis.vercel.app';
 
-  Future<UpdateProfileResponse> updateProfile(UpdateProfileRequest request, String token) async {
+  Future<UpdateProfileResponse> updateProfile(
+      UpdateProfileRequest request, String token) async {
     try {
       final response = await _dio.patch(
         "$baseUrl/profile",
@@ -30,7 +29,8 @@ class ApiService {
       if (response.statusCode == 200 || response.statusCode == 204) {
         return UpdateProfileResponse.fromJson(response.data);
       } else {
-        throw Exception("Failed to update profile: ${response.data['message']}");
+        throw Exception(
+            "Failed to update profile: ${response.data['message']}");
       }
     } catch (e) {
       throw Exception("Error updating profile: $e");

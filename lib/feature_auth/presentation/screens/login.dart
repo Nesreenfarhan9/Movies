@@ -7,7 +7,7 @@ import 'package:movies/feature_auth/presentation/screens/register_screen.dart';
 import 'package:movies/shared/constants.dart';
 import 'package:movies/shared/custom_elevated_button.dart';
 import 'package:movies/shared/loading_indicator.dart';
-import 'package:movies/tab/profile_tab/profile%20_page_screen.dart';
+import 'package:movies/shared/profile%20_page_screen.dart';
 
 import 'package:movies/shared/app_theme.dart';
 

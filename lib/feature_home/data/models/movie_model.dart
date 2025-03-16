@@ -47,6 +47,7 @@ class MovieDetails {
   final String mediumCoverImage;
   final String largeCoverImage;
   final List<Torrent> torrents;
+  final List<Actor> actors;
   bool isSaved;
 
   MovieDetails({
@@ -71,6 +72,7 @@ class MovieDetails {
     required this.mediumCoverImage,
     required this.largeCoverImage,
     required this.torrents,
+    required this.actors,
     this.isSaved = false,
   });
 
@@ -97,11 +99,37 @@ class MovieDetails {
       mediumCoverImage: json['medium_cover_image'] ?? '',
       largeCoverImage: json['large_cover_image'] ?? '',
       torrents: (json['torrents'] as List?)?.map((e) => Torrent.fromJson(e)).toList() ?? [],
-      isSaved: false, // Not stored in JSON, but initialized as false
+      actors: (json['actors'] as List?)?.map((e) => Actor.fromJson(e)).toList() ?? [],
+      isSaved: false,
     );
   }
-}
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'url': url,
+      'imdb_code': imdbCode,
+      'title': title,
+      'title_english': titleEnglish,
+      'title_long': titleLong,
+      'slug': slug,
+      'year': year,
+      'rating': rating,
+      'runtime': runtime,
+      'genres': genres,
+      'like_count': likeCount,
+      'description_intro': descriptionIntro,
+      'description_full': descriptionFull,
+      'yt_trailer_code': ytTrailerCode,
+      'language': language,
+      'background_image': backgroundImage,
+      'small_cover_image': smallCoverImage,
+      'medium_cover_image': mediumCoverImage,
+      'large_cover_image': largeCoverImage,
+      'actors': actors.map((e) => e.toJson()).toList(),
+    };
+  }
+}
 
 class Torrent {
   final String url;
@@ -115,10 +143,8 @@ class Torrent {
   final String hash;
 
   Torrent({
-
     required this.url,
     required this.hash,
-
     required this.quality,
     required this.type,
     required this.videoCodec,
@@ -141,5 +167,32 @@ class Torrent {
       peers: json['peers'],
     );
   }
+}
 
+class Actor {
+  final String name;
+  final String character;
+  final String imageUrl;
+
+  Actor({
+    required this.name,
+    required this.character,
+    required this.imageUrl,
+  });
+
+  factory Actor.fromJson(Map<String, dynamic> json) {
+    return Actor(
+      name: json['name'],
+      character: json['character'],
+      imageUrl: json['image_url'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'character': character,
+      'image_url': imageUrl,
+    };
+  }
 }
