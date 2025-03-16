@@ -2,11 +2,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
-import 'package:movies/shared/Textfieldwidget.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/shared/custom_elevated_button.dart';
 
+import '../shared/Textfieldwidget.dart';
+
 class resetPasswordScreen extends StatefulWidget {
+      static const String routeNamed = "/reset";
+
   @override
   _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
 }

@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/feature_home/presentation/view_model/MovieCarousel.dart';
-import 'package:movies/feature_home/presentation/screens/MoviesListScreen.dart';
+import 'package:movies/feature_home/presentation/screens/movies_details_screen.dart';
 import 'package:movies/feature_home/presentation/cubits/movie_bloc.dart';
 import 'package:movies/feature_home/presentation/cubits/movie_state.dart';
 import 'package:movies/shared/app_theme.dart';
 import 'package:movies/feature_home/data/repositories/movie_event.dart';
-
+import 'package:movies/feature_home/presentation/cubits/movie_details_cubit.dart';
 import '../../data/models/movie_model.dart';
+import '../view_model/MovieCarousel.dart';
+import 'MoviesListScreen.dart';
+import '../../data/data_sources/movie_repository.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
-_HomeScreenState createState() => _HomeScreenState();
-   }
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
 class _HomeScreenState extends State<HomeScreen> {
   String currentGenre = "Action";
+  Movie? selectedMovie;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    BlocProvider.of<MovieBloc>(context).add(FetchMovies()); 
+    BlocProvider.of<MovieBloc>(context).add(FetchMovies());
   }
 
   @override
@@ -42,42 +46,62 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-
           BlocBuilder<MovieBloc, MovieState>(
             builder: (context, state) {
               if (state is MovieLoading) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is MovieLoaded) {
-                final latestMovies = state.movies; 
+                final latestMovies = state.movies;
+
+                //  Set the first movie as the selected movie initially
+                selectedMovie ??=
+                    latestMovies.isNotEmpty ? latestMovies.first : null;
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: 30),
-
                     Image.asset(
                       "assets/images/availablenow.png",
-                      width: screenSize.width*.9,
-                      height: screenSize.height*.1,
+                      width: screenSize.width * .9,
+                      height: screenSize.height * .1,
                       fit: BoxFit.contain,
                     ),
-
-                    MovieCarousel(
-                      movies: latestMovies,
-                      onMovieChanged: (Movie movie) {
-                        setState(() {
-                          currentGenre = movie.genre; 
-                        });
+                    InkWell(
+                      onTap: () {
+                        if (selectedMovie != null) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => BlocProvider(
+                                create: (context) =>
+                                    MovieDetailsCubit(MovieRepository())
+                                      ..getMovieDetails(selectedMovie!.id),
+                                child: MoviesDetailsScreen(),
+                              ),
+                              settings:
+                                  RouteSettings(arguments: selectedMovie!.id),
+                            ),
+                          );
+                        }
                       },
+                      child: MovieCarousel(
+                        movies: latestMovies,
+                        onMovieChanged: (Movie movie) {
+                          setState(() {
+                            selectedMovie =
+                                movie; //  Update the selected movie properly
+                            currentGenre = movie.genre;
+                          });
+                        },
+                      ),
                     ),
-
                     Image.asset(
                       "assets/images/watchnow.png",
                       width: 330,
                       height: 170,
                       fit: BoxFit.contain,
                     ),
-
                     Expanded(
                       child: Column(
                         children: [
@@ -87,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  currentGenre, 
+                                  currentGenre,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -114,16 +138,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                           ),
-
                           Expanded(
                             child: ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: state.movies
                                   .where((movie) => movie.genre == currentGenre)
-                                  .length, 
+                                  .length,
                               itemBuilder: (context, index) {
                                 final filteredMovies = state.movies
-                                    .where((movie) => movie.genre == currentGenre)
+                                    .where(
+                                        (movie) => movie.genre == currentGenre)
                                     .toList();
                                 final movie = filteredMovies[index];
 
@@ -133,11 +157,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
-                                        child: Image.network(
-                                          movie.image,
-                                          width: screenSize.width * 0.3,
-                                          height: screenSize.height * 0.5,
-                                          fit: BoxFit.fill,
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BlocProvider(
+                                                  create: (context) =>
+                                                      MovieDetailsCubit(
+                                                          MovieRepository())
+                                                        ..getMovieDetails(
+                                                            movie.id),
+                                                  child: MoviesDetailsScreen(),
+                                                ),
+                                                settings: RouteSettings(
+                                                    arguments: movie.id),
+                                              ),
+                                            );
+                                          },
+                                          child: Image.network(
+                                            movie.image,
+                                            width: screenSize.width * 0.3,
+                                            height: screenSize.height * 0.5,
+                                            fit: BoxFit.fill,
+                                          ),
                                         ),
                                       ),
                                       Positioned(
@@ -147,13 +191,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 6, vertical: 4),
                                           decoration: BoxDecoration(
-                                            color: AppTheme.black.withOpacity(0.7),
-                                            borderRadius: BorderRadius.circular(10),
+                                            color:
+                                                AppTheme.black.withOpacity(0.7),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
                                           ),
                                           child: Row(
                                             children: [
                                               Icon(Icons.star,
-                                                  color: AppTheme.yellow, size: 14),
+                                                  color: AppTheme.yellow,
+                                                  size: 14),
                                               SizedBox(width: 3),
                                               Text(
                                                 movie.rating.toString(),
@@ -192,5 +239,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-
