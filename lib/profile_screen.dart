@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/shared/Custom_Bottom_Navigation_Bar.dart';
 import 'package:movies/shared/app_theme.dart';
-import '../../../tab/profile_tab/profile_bloc.dart';
+import 'tab/profile_tab/profile_bloc.dart';
+import 'package:movies/Custom_Bottom_Navigation_Bar.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const routeNamed = "/home";
@@ -14,13 +14,9 @@ class ProfileScreen extends StatelessWidget {
     required this.onItemTapped,
   });
 
-
- 
-
   @override
   Widget build(BuildContext context) {
     TextTheme themeText = Theme.of(context).textTheme;
-    
     return BlocProvider(
       create: (context) => ProfileBloc()..add(LoadProfile()),
       child: Scaffold(
@@ -66,7 +62,6 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.only(left: 30, right: 10),
-                   
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -74,7 +69,6 @@ class ProfileScreen extends StatelessWidget {
                             child: _customButton(
                                 "Edit Profile", AppTheme.yellow, Icons.edit)),
                         SizedBox(width: 20),
-                        _customButton("Exit", AppTheme.red, Icons.exit_to_app),
                         _customButton("Exit", AppTheme.red, Icons.exit_to_app),
                       ],
                     ),
@@ -98,10 +92,6 @@ class ProfileScreen extends StatelessWidget {
                     height: 150,
                   ),
                   Spacer(),
-                  CustomBottomNavigationBar(
-                    selectedIndex: selectedIndex,
-                    onItemTapped: onItemTapped,
-                  ),
                   CustomBottomNavigationBar(
                     selectedIndex: selectedIndex,
                     onItemTapped: onItemTapped,

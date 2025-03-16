@@ -12,6 +12,7 @@ class AppTheme {
   static ThemeData LightTheme = ThemeData();
   static ThemeData DarkTheme = ThemeData(
     scaffoldBackgroundColor: black,
+ 
     primaryColor: primary,
     textTheme: const TextTheme(
       displaySmall:
@@ -32,6 +33,7 @@ class AppTheme {
         fontSize: 16,
         fontWeight: FontWeight.w400,
         color: yellow,
+     
       ),
     ),
   );

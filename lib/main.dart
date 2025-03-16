@@ -17,6 +17,7 @@ import 'feature_auth/presentation/screens/login.dart';
 import 'feature_auth/presentation/screens/register_screen.dart';
 import 'onboarding/widgets/home_onboarding_screen.dart';
 
+
 void main() {
   final movieRepository = MovieRepository();
 
