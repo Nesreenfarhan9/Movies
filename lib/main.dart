@@ -48,6 +48,7 @@ class MoviesApp extends StatelessWidget {
           ForgetPasswordScreen.routeNamed: (_) => ForgetPasswordScreen(),
           RegisterScreen.routeNamed: (_) => RegisterScreen(),
           MoviesDetailsScreen.routeNamed: (_) => MoviesDetailsScreen(),
+           resetPasswordScreen.routeNamed: (_) => resetPasswordScreen(),
         },
         initialRoute: ProfilePageScreen.routeNamed,
         debugShowCheckedModeBanner: false,

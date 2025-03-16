@@ -7,6 +7,8 @@ import 'package:movies/shared/app_theme.dart';
 import 'package:movies/shared/custom_elevated_button.dart';
 
 class resetPasswordScreen extends StatefulWidget {
+      static const String routeNamed = "/reset";
+
   @override
   _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
 }
