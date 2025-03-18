@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/feature_auth/presentation/cubit/auth_cubit.dart';
+import 'package:movies/feature_auth/reset_password_screen.dart';
 import 'package:movies/feature_home/data/data_sources/movie_repository.dart';
 import 'package:movies/feature_home/data/repositories/movie_event.dart';
 import 'package:movies/feature_home/presentation/cubits/Search_Cubit.dart';
@@ -48,7 +49,7 @@ class MoviesApp extends StatelessWidget {
           ForgetPasswordScreen.routeNamed: (_) => ForgetPasswordScreen(),
           RegisterScreen.routeNamed: (_) => RegisterScreen(),
           MoviesDetailsScreen.routeNamed: (_) => MoviesDetailsScreen(),
-           resetPasswordScreen.routeNamed: (_) => resetPasswordScreen(),
+          resetPasswordScreen.routeNamed: (_) => resetPasswordScreen(),
         },
         initialRoute: ProfilePageScreen.routeNamed,
         debugShowCheckedModeBanner: false,
