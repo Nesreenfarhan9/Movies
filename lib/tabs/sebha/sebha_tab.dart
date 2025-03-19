@@ -5,6 +5,22 @@ class SebhaTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Image.asset('assets/images/header.png'),
+        Text(
+          'سَبِّحِ اسْمَ رَبِّكَ الأعلى ',
+          style: Theme.of(context).textTheme.bodyMedium,
+          textAlign: TextAlign.center,
+        ),
+        Stack(
+          children: [
+            Image.asset('assets/images/Sebhahead'),
+            Image.asset('assets/images/SebhaBody'),
+          ],
+        )
+      ],
+    );
   }
 }
