@@ -5,13 +5,12 @@ class Movie {
   final String genre;
   final int id;
 
-  Movie({
-    required this.title,
-    required this.image,
-    required this.rating,
-    required this.genre,
-    required this.id
-  });
+  Movie(
+      {required this.title,
+      required this.image,
+      required this.rating,
+      required this.genre,
+      required this.id});
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
@@ -25,6 +24,7 @@ class Movie {
     );
   }
 }
+
 class MovieDetails {
   final int id;
   final String url;
@@ -47,6 +47,8 @@ class MovieDetails {
   final String mediumCoverImage;
   final String largeCoverImage;
   final List<Torrent> torrents;
+  final List<String> screenshots;
+  final List<Movie> similarMovies;
   bool isSaved;
 
   MovieDetails({
@@ -70,6 +72,8 @@ class MovieDetails {
     required this.smallCoverImage,
     required this.mediumCoverImage,
     required this.largeCoverImage,
+    required this.screenshots,
+    required this.similarMovies,
     required this.torrents,
     this.isSaved = false,
   });
@@ -90,18 +94,30 @@ class MovieDetails {
       likeCount: json['like_count'],
       descriptionIntro: json['description_intro'] ?? '',
       descriptionFull: json['description_full'] ?? '',
+      screenshots: (json['images']?['backdrops'] as List?)
+              ?.map((img) => img['file_path'] as String)
+              .toList() ??
+          [],
+
+      similarMovies: (json['similar']?['results'] as List?)
+              ?.map((movie) => Movie.fromJson(movie))
+              .toList() ??
+          [],
       ytTrailerCode: json['yt_trailer_code'] ?? '',
       language: json['language'] ?? 'Unknown',
       backgroundImage: json['background_image'] ?? '',
       smallCoverImage: json['small_cover_image'] ?? '',
       mediumCoverImage: json['medium_cover_image'] ?? '',
       largeCoverImage: json['large_cover_image'] ?? '',
-      torrents: (json['torrents'] as List?)?.map((e) => Torrent.fromJson(e)).toList() ?? [],
+      torrents: (json['torrents'] as List?)
+              ?.map((e) => Torrent.fromJson(e))
+              .toList() ??
+          [],
+
       isSaved: false, // Not stored in JSON, but initialized as false
     );
   }
 }
-
 
 class Torrent {
   final String url;
@@ -115,10 +131,8 @@ class Torrent {
   final String hash;
 
   Torrent({
-
     required this.url,
     required this.hash,
-
     required this.quality,
     required this.type,
     required this.videoCodec,
@@ -141,5 +155,4 @@ class Torrent {
       peers: json['peers'],
     );
   }
-
 }

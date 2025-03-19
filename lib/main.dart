@@ -15,7 +15,6 @@ import 'feature_auth/reset_password_screen.dart';
 import 'feature_search&explore/cubits/Search_cubit.dart';
 import 'onboarding/widgets/home_onboarding_screen.dart';
 
-
 void main() {
   final movieRepository = MovieRepository();
 
@@ -45,9 +44,9 @@ class MoviesApp extends StatelessWidget {
           ForgetPasswordScreen.routeNamed: (_) => ForgetPasswordScreen(),
           RegisterScreen.routeNamed: (_) => RegisterScreen(),
           MoviesDetailsScreen.routeNamed: (_) => MoviesDetailsScreen(),
-           resetPasswordScreen.routeNamed: (_) => resetPasswordScreen(),
+          resetPasswordScreen.routeNamed: (_) => resetPasswordScreen(),
         },
-        initialRoute: LoginScreen.routeNamed,
+        initialRoute: ProfilePageScreen.routeNamed,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.LightTheme,
         darkTheme: AppTheme.DarkTheme,
