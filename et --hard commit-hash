@@ -1,0 +1,204 @@
+[33mcommit 14d834b20d66476169274e33940a13edae867124[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelopment[m[33m, [m[1;31morigin/logic-auth[m[33m, [m[1;32mlogic-auth[m[33m)[m
+Author: mhmdw <mhmdwdyn65@gmail.com>
+Date:   Mon Mar 10 14:37:15 2025 +0200
+
+    update ui login & register and implement logic api
+
+[33mcommit e16381cd19a15b767849f1939fb470f0fbc80a6a[m
+Author: mhmdw <mhmdwdyn65@gmail.com>
+Date:   Sun Mar 9 06:29:00 2025 +0200
+
+    few widgets
+
+[33mcommit 309ccbcd50a5ed42191738bffcc773dc61ff89fe[m[33m ([m[1;31morigin/features/homescreen[m[33m)[m
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Thu Mar 6 16:13:34 2025 +0200
+
+    commit phase one
+
+[33mcommit 000a1e9c0e4cf6b63f163ef1cad414f496c99502[m
+Merge: efeaaa5 37ab283
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Thu Mar 6 01:55:37 2025 +0200
+
+    Merge branch 'navigation-login-screen' into development
+
+[33mcommit efeaaa55fd43af1c8bac10d7fccaff4933bc6fa9[m[33m ([m[1;31morigin/features/splashscreen[m[33m)[m
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Thu Mar 6 01:12:02 2025 +0200
+
+    implement splash screen
+
+[33mcommit 37ab2836f8fad258a5968f03c5cb12c48f087be5[m
+Author: Nardeen67 <149368582+Nardeen67@users.noreply.github.com>
+Date:   Thu Mar 6 01:03:35 2025 +0200
+
+    added navigation, fixed theme colors, and added 2x, 3x images
+
+[33mcommit 9840dc4f44c2aa7c05bac499d0c20ae9146499db[m
+Merge: 3416abb f42e242
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Thu Mar 6 00:32:36 2025 +0200
+
+    Merge pull request #8 from Nesreenfarhan9/feature/Register
+    
+    register
+
+[33mcommit f42e242621359729b3fc768ca3cbc0a8439c7df4[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Thu Mar 6 00:30:56 2025 +0200
+
+    implement register screen
+
+[33mcommit 30d8b8dbe8cb9f28d7df1a9eb89d4e3566bcc68f[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Thu Mar 6 00:30:09 2025 +0200
+
+    Delete lib/feature_auth/register_screen
+
+[33mcommit 4a7854c7043f543d45f2bd2f26710552f7ebb989[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Thu Mar 6 00:29:25 2025 +0200
+
+    implement register screen
+
+[33mcommit 41d47657475a8e299ada547f21b59289de21c2ad[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Thu Mar 6 00:28:22 2025 +0200
+
+    Delete lib/register.dart
+
+[33mcommit bf33b7878a9947fd481b2ab396537d2795915b9e[m
+Author: Nardeen67 <149368582+Nardeen67@users.noreply.github.com>
+Date:   Thu Mar 6 00:12:28 2025 +0200
+
+    Synced latest updates from development
+
+[33mcommit 3416abb8fa307128ae55bd5ea9131c07e2fe4900[m
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Wed Mar 5 23:43:14 2025 +0200
+
+    profile
+
+[33mcommit 8bc86ece59ae1eb05ec1c5f109f0f9486ebbb08b[m
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Wed Mar 5 23:41:49 2025 +0200
+
+    implement profile
+
+[33mcommit b3e7cb31668085a2a19b01882ff5e92db1d7ad2a[m
+Author: Nardeen67 <149368582+Nardeen67@users.noreply.github.com>
+Date:   Wed Mar 5 01:42:27 2025 +0200
+
+    Copied files from development to navigation-login-screen
+
+[33mcommit 120fd4b8c5d8f9afdec11f8ac16a9cd726ae1a7d[m
+Author: Nardeen67 <149368582+Nardeen67@users.noreply.github.com>
+Date:   Wed Mar 5 01:40:18 2025 +0200
+
+    Added login, register, and forget password screens from development
+
+[33mcommit a03eec3dc1546966f7520967b6cb2b0cc95b82b3[m
+Merge: c2ca31f 9399130
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Tue Mar 4 23:56:12 2025 +0200
+
+    Merge branch 'feature/update' of https://github.com/Nesreenfarhan9/Movies into development
+
+[33mcommit c2ca31ff023e94f8d4fa7c10ba64a783bfca3ed5[m
+Merge: 631211e 0fd03d2
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Tue Mar 4 23:52:30 2025 +0200
+
+    Merge branch 'features/setup' of https://github.com/Nesreenfarhan9/Movies into development
+
+[33mcommit 0fd03d243dd415112d19b347e6a8d891d99a560a[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Tue Mar 4 23:11:54 2025 +0200
+
+    Update register.dart
+
+[33mcommit 3a338986970c425e835ea1a862c86927978a84e2[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Tue Mar 4 22:54:35 2025 +0200
+
+    Update register.dart
+
+[33mcommit a53c0f63dd73763607a2f8275458e1333cb585a0[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Tue Mar 4 22:46:00 2025 +0200
+
+    Add files via upload
+
+[33mcommit 93991304d1c3c5b4f6cb7237f9be91dc76b5ffee[m[33m ([m[1;31morigin/feature/update[m[33m)[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Tue Mar 4 22:13:28 2025 +0200
+
+    Add files via upload
+
+[33mcommit 4fb7d4409c1739bbbcb6471f4ef1823d4a2f7b4f[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Tue Mar 4 19:59:10 2025 +0200
+
+    Add files via upload
+
+[33mcommit e0cd94b69556cd59062ced08b918b319414dd732[m
+Author: TasneemSafwat <tasmarakby92@gmail.com>
+Date:   Tue Mar 4 19:56:49 2025 +0200
+
+    Add files via upload
+
+[33mcommit 631211e695296576f3a76fcb43f059af56f16b1f[m[33m ([m[1;31morigin/forget-screen[m[33m, [m[1;32mforget-screen[m[33m)[m
+Author: mhmdw <mhmdwdyn65@gmail.com>
+Date:   Tue Mar 4 13:09:45 2025 +0200
+
+    implement forget Password screen
+
+[33mcommit 6c3645465065282927a6c32f21ffc9de6ea5044b[m[33m ([m[1;31morigin/fearure/onboarding[m[33m, [m[1;32mfeatures/setup[m[33m, [m[1;32mfearure/onboarding[m[33m)[m
+Author: mhmdw <mhmdwdyn65@gmail.com>
+Date:   Tue Mar 4 12:52:07 2025 +0200
+
+    implement feature onboarding
+
+[33mcommit 38b6083b2f9ab33adce4e3c8c91f33c7bbad9fb9[m
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Mon Mar 3 21:06:04 2025 +0200
+
+    merge
+
+[33mcommit 8e0e4db64b6f15996d407eef618bc62c24eaebba[m
+Merge: 11c3af6 1caf109
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Mon Mar 3 21:05:28 2025 +0200
+
+    Merge branch 'main' of https://github.com/Nesreenfarhan9/Movies into development
+
+[33mcommit 11c3af635dd5cf2c4ed2051d1159d9b358fc1996[m[33m ([m[1;31morigin/apptheme[m[33m)[m
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Mon Mar 3 20:41:57 2025 +0200
+
+    app theme and profile ui
+
+[33mcommit 1caf109ee58a392854177517c1c3ecf6c547fd1c[m[33m ([m[1;32mmain[m[33m)[m
+Author: Nardeen67 <149368582+Nardeen67@users.noreply.github.com>
+Date:   Mon Mar 3 17:22:34 2025 +0200
+
+    Added login screen and custom text field widget
+
+[33mcommit b25e25cf62e2c30593112a206ccd5c9d51bb4e5b[m
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Sun Mar 2 00:46:26 2025 +0200
+
+     splash screen
+
+[33mcommit 26a072fe4f6990be3552346b5301cfb025c7c378[m
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Sat Mar 1 12:01:31 2025 +0200
+
+    initilize
+
+[33mcommit d39a6270a77190d77666019d962802dce87bd878[m
+Author: nesreen <nesrafarhan@gmail.com>
+Date:   Sat Mar 1 11:53:33 2025 +0200
+
+    Initial commit

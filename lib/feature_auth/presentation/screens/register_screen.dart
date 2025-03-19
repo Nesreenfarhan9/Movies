@@ -6,13 +6,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/feature_auth/data/models/register_request.dart';
 import 'package:movies/feature_auth/presentation/cubit/auth_cubit.dart';
 import 'package:movies/feature_auth/presentation/cubit/auth_states.dart';
+import 'package:movies/feature_auth/presentation/view_model/avtar_model.dart';
+import 'package:movies/shared/ShowItem.dart';
 
 import '../../../shared/Textfieldwidget.dart';
 import '../../../shared/app_theme.dart';
 import '../../../shared/constants.dart';
 import '../../../shared/custom_elevated_button.dart';
-import '../../../shared/ShowItem.dart';
-import '../../../model/avtar_model.dart';
+
 import '../../../shared/loading_indicator.dart';
 import '../../../tab/profile_tab/profile _page_screen.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../model/avtar_model.dart';
+import '../feature_auth/presentation/view_model/avtar_model.dart';
 
 class ShowItem extends StatelessWidget {
-  AvatarModel avatar;
+  final AvatarModel avatar;
   ShowItem({required this.avatar});
 
   @override
