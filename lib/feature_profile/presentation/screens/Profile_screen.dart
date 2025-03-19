@@ -65,16 +65,6 @@ class ProfileScreen extends StatelessWidget {
                         buttonColor: AppTheme.yellow,
                         labelColor: AppTheme.black,
                       ),
-                      // Expanded(
-                      //   child: _customButton(
-                      //     "Edit Profile",
-                      //     AppTheme.yellow,
-                      //     Icons.edit,
-                      //     () {
-                      //       Navigator.pushNamed(context, Update.routeNamed);
-                      //     },
-                      //   ),
-                      // ),
                       SizedBox(width: 10),
                       CustomElevatedButton(
                         lable: 'Exit',
@@ -200,15 +190,6 @@ Widget _statItem(String title, int count) {
   );
 }
 
-Widget _customButton(
-    String text, Color color, IconData icon, VoidCallback onTap) {
-  return ElevatedButton.icon(
-    onPressed: onTap,
-    icon: Icon(icon, color: AppTheme.black),
-    label: Text(text),
-    style: ElevatedButton.styleFrom(backgroundColor: color),
-  );
-}
 
 Widget _tabButton(String text, IconData icon, bool isSelected) {
   return Column(
