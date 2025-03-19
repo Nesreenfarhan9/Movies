@@ -9,19 +9,13 @@ class MovieRepository {
 
   Future<List<Movie>> fetchMovies() async {
     final response = await _dio.get(APIConstants.ListMoviesHome);
-
     final movies = response.data['data']['movies'] as List;
-
     return movies.map((json) => Movie.fromJson(json)).toList();
   }
-
   Future<MovieDetails> fetchMovieDetails(int movieId) async {
     try {
-      final response =
-          await _dio.get(baseUrl, queryParameters: {'movie_id': movieId});
-
+      final response = await _dio.get(baseUrl, queryParameters: {'movie_id': movieId});
       final movieJson = response.data['data']['movie'];
-
       return MovieDetails.fromJson(movieJson);
     } catch (error) {
       throw Exception('Failed to load movie details: $error');

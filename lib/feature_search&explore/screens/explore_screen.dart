@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/feature_home/presentation/cubits/explore_cubit.dart';
-import 'package:movies/feature_home/presentation/cubits/explore_state.dart';
+import 'package:movies/feature_search&explore/cubits/explore_cubit.dart';
+import 'package:movies/feature_search&explore/cubits/explore_state.dart';
 import 'package:movies/shared/app_theme.dart';
 
 

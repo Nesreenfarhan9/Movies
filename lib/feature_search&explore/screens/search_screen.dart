@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies/feature_home/presentation/cubits/Search_Cubit.dart';
-import 'package:movies/feature_home/presentation/cubits/search_state.dart';
 import 'package:movies/shared/app_theme.dart';
+
+import '../cubits/Search_State.dart';
+import '../cubits/Search_cubit.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
