@@ -29,7 +29,7 @@ class _homeScreenState extends State<homeScreen> {
   List<String> baackgroundImage = [
     'quranBackground',
     'hadethBackground ',
-    'quranBackground',
+    'sebhaBackgroung',
     'quranBackground',
     'quranBackground',
   ];
