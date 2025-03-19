@@ -43,6 +43,7 @@ dependencies:
   equatable: ^2.0.5
   flutter_svg: ^2.0.9
   url_launcher: ^6.1.7
+  
  
    
  
@@ -78,6 +79,7 @@ flutter:
   assets:
       - assets/images/
       - assets/images/EGYPT.png
+      - assets/icons/
       - assets/icons/
       - assets/icons/
 

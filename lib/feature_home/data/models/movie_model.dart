@@ -4,13 +4,17 @@ class Movie {
   final double rating;
   final String genre;
   final int id;
+  final List<String> screenshots;
+  final List<String> similarMovies;
 
   Movie(
       {required this.title,
       required this.image,
       required this.rating,
       required this.genre,
-      required this.id});
+      required this.id,
+      required this.screenshots,
+      required this.similarMovies});
 
   factory Movie.fromJson(Map<String, dynamic> json) {
     return Movie(
@@ -21,6 +25,15 @@ class Movie {
           ? json["genres"][0]
           : "Unknown",
       id: json['id'],
+      screenshots: (json['images']?['backdrops'] as List?)
+              ?.map(
+                  (img) => "https://image.tmdb.org/t/p/w500${img['file_path']}")
+              .toList() ??
+          [],
+      similarMovies: json["similar_movies"] != null
+          ? List<String>.from(
+              json["similar_movies"].map((movie) => movie["title"]))
+          : [],
     );
   }
 }

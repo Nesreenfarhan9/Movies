@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               builder: (context) => BlocProvider(
                                 create: (context) =>
                                     MovieDetailsCubit(MovieRepository())
-                                      ..getMovieDetails(selectedMovie!.id),
+                                      ..fetchMovieDetails(selectedMovie!.id),
                                 child: MoviesDetailsScreen(),
                               ),
                               settings:
@@ -167,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   create: (context) =>
                                                       MovieDetailsCubit(
                                                           MovieRepository())
-                                                        ..getMovieDetails(
+                                                        ..fetchMovieDetails(
                                                             movie.id),
                                                   child: MoviesDetailsScreen(),
                                                 ),

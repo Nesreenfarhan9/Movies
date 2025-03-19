@@ -8,17 +8,20 @@ class MovieDetailsCubit extends Cubit<MovieState> {
 
   MovieDetailsCubit(this._movieRepository) : super(MovieInitial());
 
-  Future<void> getMovieDetails(int movieId) async {
+  Future<void> fetchMovieDetails(int movieId) async {
     try {
       emit(MovieLoading());
+
       final movie = await _movieRepository.fetchMovieDetails(movieId);
+      final similarMovies = await _movieRepository.fetchSimilarMovies(movieId);
+      final screenshots = movie?.screenshots ?? [];
 
       if (movie == null) {
         emit(MovieError('Movie data is empty'));
         return;
       }
 
-      emit(MovieLoaded(movie));
+      emit(MovieLoadedWithSimilar(movie, similarMovies, screenshots));
     } catch (error, stackTrace) {
       debugPrint('Error fetching movie details: $error');
       debugPrintStack(stackTrace: stackTrace);
