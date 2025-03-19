@@ -36,4 +36,26 @@ class ApiService {
       throw Exception("Error updating profile: $e");
     }
   }
+   Future<String> deleteProfile(String token) async {
+    try {
+      final response = await _dio.delete(
+        "/profile/delete",
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        return response.data["message"] ?? "Profile deleted successfully";
+      } else {
+        throw Exception("Failed to delete profile: ${response.statusMessage}");
+      }
+    } catch (e) {
+      throw Exception("Error deleting profile: ${e.toString()}");
+    }
+  }
+
 }

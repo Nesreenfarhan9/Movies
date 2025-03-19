@@ -8,9 +8,7 @@ import 'package:movies/shared/constants.dart';
 import 'package:movies/shared/custom_elevated_button.dart';
 import 'package:movies/shared/loading_indicator.dart';
 import 'package:movies/tab/profile_tab/profile%20_page_screen.dart';
-
 import 'package:movies/shared/app_theme.dart';
-
 import '../../../shared/Textfieldwidget.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -35,7 +33,6 @@ class LoginScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-
                   Image.asset(
                     'assets/images/iconyellow.png',
                     height: screenSize.height * .1,
@@ -68,20 +65,26 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   BlocListener<AuthCubit, AuthStates>(
-                    listener: (_, state) {
+                    listener: (context, state) {
                       if (state is LoginLoading) {
-                        LoadingIndicator();
+                        showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) => const LoadingIndicator(),
+                        );
                       } else if (state is LoginSuccess) {
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          Navigator.pushReplacementNamed(context, ProfilePageScreen.routeNamed);
-                        });
-                      }
-                      else if(state is LoginError){
-                        WidgetsBinding.instance.addPostFrameCallback((_) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(state.message, style: TextStyle(color: Colors.white))),
-                          );
-                        });
+                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(
+                            context, ProfilePageScreen.routeNamed);
+                      } else if (state is LoginError) {
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(state.message,
+                                style: TextStyle(color: Colors.white)),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
                       }
                     },
                     child: CustomElevatedButton(
@@ -90,8 +93,8 @@ class LoginScreen extends StatelessWidget {
                         if (_formKey.currentState!.validate()) {
                           context.read<AuthCubit>().login(
                                 LoginRequest(
-                                  email: _emailController.text,
-                                  password: _passwordController.text,
+                                  email: _emailController.text.trim(),
+                                  password: _passwordController.text.trim(),
                                 ),
                               );
                         }
@@ -151,8 +154,8 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Container(
-                    width: screenSize.width*.2,
-                    height: screenSize.height*0.05,
+                    width: screenSize.width * .2,
+                    height: screenSize.height * 0.05,
                     decoration: BoxDecoration(
                       border: Border.all(color: AppTheme.yellow, width: 2),
                       borderRadius: BorderRadius.circular(25),
@@ -161,8 +164,10 @@ class LoginScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Image.asset('assets/images/US.png', height: 30, fit: BoxFit.scaleDown),
-                        Image.asset('assets/images/EGYPT.png', height: 30,fit: BoxFit.scaleDown),
+                        Image.asset('assets/images/US.png',
+                            height: 30, fit: BoxFit.scaleDown),
+                        Image.asset('assets/images/EGYPT.png',
+                            height: 30, fit: BoxFit.scaleDown),
                       ],
                     ),
                   ),

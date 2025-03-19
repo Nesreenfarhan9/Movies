@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies/services/api_service.dart';
 import 'package:movies/services/UpdateProfileRequest.dart';
@@ -20,6 +20,16 @@ class UpdateProfileFailure extends UpdateProfileState {
   UpdateProfileFailure(this.error);
 }
 
+class DeleteProfileSuccess extends UpdateProfileState {
+  final String message;
+  DeleteProfileSuccess(this.message);
+}
+
+class DeleteProfileFailure extends UpdateProfileState {
+  final String error;
+  DeleteProfileFailure(this.error);
+}
+
 class UpdateProfileCubit extends Cubit<UpdateProfileState> {
   final ApiService apiService;
 
@@ -33,6 +43,17 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
       emit(UpdateProfileSuccess(response));
     } catch (e) {
       emit(UpdateProfileFailure(e.toString()));
+    }
+  }
+
+  Future<void> deleteProfile(String token) async {
+    emit(UpdateProfileLoading());
+    try {
+      final message = await apiService.deleteProfile(token);
+      emit(DeleteProfileSuccess(message));
+    } catch (e) {
+      debugPrint(e.toString());
+      emit(DeleteProfileFailure(e.toString()));
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:movies/feature_auth/data/models/login_request.dart';
 import 'package:movies/feature_auth/data/models/register_request.dart';
 import 'package:movies/feature_auth/data/repositories/auth_repositories.dart';
 import 'package:movies/feature_auth/presentation/cubit/auth_states.dart';
+import 'package:movies/services/shared_prefs_helper.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitial());
@@ -12,20 +13,22 @@ class AuthCubit extends Cubit<AuthStates> {
   );
 
   Future<void> register(RegisterRequest request) async {
-    try{
+    try {
       emit(RegisterLoading());
       await _authRepositories.register(request);
-    emit(RegisterSuccess());
-    }catch(error){
+      emit(RegisterSuccess());
+    } catch (error) {
       emit(RegisterError(error.toString()));
     }
   }
+
   Future<void> login(LoginRequest request) async {
-    try{
+    try {
       emit(LoginLoading());
-      await _authRepositories.login(request);
+      var response = await _authRepositories.login(request);
+      SharedPrefsHelper.saveToken(response);
       emit(LoginSuccess());
-    }catch(error){
+    } catch (error) {
       emit(LoginError(error.toString()));
     }
   }
