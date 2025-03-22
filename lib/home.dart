@@ -11,8 +11,6 @@ import 'package:islaami/tabs/time/time_tab.dart';
 class homeScreen extends StatefulWidget {
   static const String routeName = '/home';
 
-  const homeScreen({super.key});
-
   @override
   State<homeScreen> createState() => _homeScreenState();
 }
