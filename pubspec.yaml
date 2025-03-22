@@ -40,6 +40,9 @@ dependencies:
   http: ^1.3.0
   audioplayers: ^6.4.0
   provider: ^6.1.2
+  intl: ^0.20.2
+  auto_size_text: ^3.0.0
+  smooth_page_indicator: ^1.2.1
 
 
 dev_dependencies:
@@ -71,6 +74,7 @@ flutter:
    - assets/icons/
    - assets/text/sura/
    - assets/text/hadeth/
+   - assets/text/azkar.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
