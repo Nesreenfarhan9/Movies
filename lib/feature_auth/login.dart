@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Textfieldwidget.dart';
+import '../shared/Textfieldwidget.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -7,6 +7,7 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   Color Yellow = const Color(0xFFFFBB3B);
+    static const routeNamed = "/login";
 
 
   @override
